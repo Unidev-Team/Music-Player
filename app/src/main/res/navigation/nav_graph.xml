@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/splashScreen">
+
+    <fragment
+        tools:layout="@layout/screen_splash"
+        android:id="@+id/splashScreen"
+        android:name="uz.gita.music_player_io.presentation.screens.splash.SplashScreen"
+        android:label="SplashScreen" >
+        <action
+            android:id="@+id/action_splashScreen_to_introScreen"
+            app:destination="@id/introScreen" />
+    </fragment>
+    <fragment
+        tools:layout="@layout/screen_intro"
+        android:id="@+id/introScreen"
+        android:name="uz.gita.music_player_io.presentation.screens.intro.IntroScreen"
+        android:label="IntroScreen" />
+</navigation>

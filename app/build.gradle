@@ -92,4 +92,5 @@ dependencies {
     implementation "com.github.skydoves:powermenu:2.2.0"
 
     implementation 'ru.ldralighieri.corbind:corbind:1.5.5'
+    implementation("com.tbuonomo:dotsindicator:4.3")
 }
