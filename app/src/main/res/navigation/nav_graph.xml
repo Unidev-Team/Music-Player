@@ -6,17 +6,29 @@
     app:startDestination="@id/splashScreen">
 
     <fragment
-        tools:layout="@layout/screen_splash"
         android:id="@+id/splashScreen"
         android:name="uz.gita.music_player_io.presentation.screens.splash.SplashScreen"
-        android:label="SplashScreen" >
+        android:label="SplashScreen"
+        tools:layout="@layout/screen_splash">
         <action
             android:id="@+id/action_splashScreen_to_introScreen"
             app:destination="@id/introScreen" />
+        <action
+            android:id="@+id/action_splashScreen_to_mainScreen"
+            app:destination="@id/mainScreen" />
     </fragment>
     <fragment
-        tools:layout="@layout/screen_intro"
         android:id="@+id/introScreen"
         android:name="uz.gita.music_player_io.presentation.screens.intro.IntroScreen"
-        android:label="IntroScreen" />
+        android:label="IntroScreen"
+        tools:layout="@layout/screen_intro" >
+        <action
+            android:id="@+id/action_introScreen_to_mainScreen"
+            app:destination="@id/mainScreen" />
+    </fragment>
+    <fragment
+        android:id="@+id/mainScreen"
+        android:name="uz.gita.music_player_io.presentation.screens.main.MainScreen"
+        android:label="MainScreen"
+        tools:layout="@layout/screen_main" />
 </navigation>

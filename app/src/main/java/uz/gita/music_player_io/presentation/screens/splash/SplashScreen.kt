@@ -17,7 +17,7 @@ import uz.gita.music_player_io.presentation.viewmodels.impl.SplashViewModelImpl
 @AndroidEntryPoint
 class SplashScreen : Fragment(R.layout.screen_splash) {
 
-    private val viewModel:SplashViewModel by viewModels<SplashViewModelImpl>()
+    private val viewModel: SplashViewModel by viewModels<SplashViewModelImpl>()
     private val navController by lazy { findNavController() }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
@@ -25,6 +25,9 @@ class SplashScreen : Fragment(R.layout.screen_splash) {
             navController.navigate(SplashScreenDirections.actionSplashScreenToIntroScreen())
         }.launchIn(lifecycleScope)
 
+        viewModel.openMainFlow.onEach {
+            navController.navigate(SplashScreenDirections.actionSplashScreenToMainScreen())
+        }.launchIn(lifecycleScope)
     }
 
 }

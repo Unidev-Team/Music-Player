@@ -10,4 +10,5 @@
     <color name="app_color">#FF8216</color>
     <color name="unselected_dot_color">#F6F6F6</color>
     <color name="bg_color">#181A20</color>
+    <color name="bottom_icon_color">#F6F6F6</color>
 </resources>

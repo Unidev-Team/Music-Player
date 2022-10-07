@@ -30,7 +30,7 @@ fun Cursor.toMusicData(ctx: Context): MusicData {
     val albumID = this.getLong(this.getColumnIndexOrThrow(MediaStore.Audio.Media.ALBUM_ID))
 
     return MusicData(
-        id,
+        0,
         artist,
         album,
         title,
