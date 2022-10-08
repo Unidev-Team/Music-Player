@@ -7,13 +7,14 @@ import java.io.Serializable
 // Created by Jamshid Isoqov an 10/7/2022
 @Entity(tableName = "musics")
 data class MusicData(
-    @PrimaryKey(autoGenerate = true)
-    val id: Long,
+    @PrimaryKey(autoGenerate = false)
+    val id: String,
     val artistName: String,
     val album: String,
     val title: String,
     val displayName: String,
-    val duration: Int,
+    val duration: Long,
     val data: String,
-    val image: String
+    val image: String,
+    val path: String
 ) : Serializable

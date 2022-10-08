@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="uz.gita.music_player_io">
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:name=".App"
         android:allowBackup="true"

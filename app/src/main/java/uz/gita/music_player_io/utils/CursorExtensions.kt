@@ -10,7 +10,7 @@ import uz.gita.music_player_io.data.model.MusicData
 
 // Created by Jamshid Isoqov an 9/22/2022
 
-fun Cursor.toMusicData(ctx: Context): MusicData {
+/*fun Cursor.toMusicData(ctx: Context): MusicData {
 
     val id = this.getString(this.getColumnIndexOrThrow(MediaStore.Audio.Media._ID))
 
@@ -30,16 +30,16 @@ fun Cursor.toMusicData(ctx: Context): MusicData {
     val albumID = this.getLong(this.getColumnIndexOrThrow(MediaStore.Audio.Media.ALBUM_ID))
 
     return MusicData(
-        0,
+        "",
         artist,
         album,
         title,
         displayName,
-        duration,
+        1,
         data,
         ctx.songArt(albumID)?.toString() ?: "empty"
     )
-}
+}*/
 
 fun Context.songArt(albumId: Long): Uri? {
     try {

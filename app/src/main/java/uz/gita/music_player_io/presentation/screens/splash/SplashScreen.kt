@@ -8,8 +8,10 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 import uz.gita.music_player_io.R
 import uz.gita.music_player_io.presentation.viewmodels.SplashViewModel
 import uz.gita.music_player_io.presentation.viewmodels.impl.SplashViewModelImpl
@@ -31,5 +33,4 @@ class SplashScreen : Fragment(R.layout.screen_splash) {
             navController.navigate(SplashScreenDirections.actionSplashScreenToMainScreen())
         }.launchIn(lifecycleScope)
     }
-
 }

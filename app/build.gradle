@@ -70,7 +70,6 @@ dependencies {
     kapt 'com.google.dagger:hilt-compiler:2.42'
     implementation "androidx.hilt:hilt-navigation-fragment:1.0.0"
 
-
     //coroutine
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4"
 
@@ -92,5 +91,6 @@ dependencies {
     implementation "com.github.skydoves:powermenu:2.2.0"
 
     implementation 'ru.ldralighieri.corbind:corbind:1.5.5'
+
     implementation("com.tbuonomo:dotsindicator:4.3")
 }

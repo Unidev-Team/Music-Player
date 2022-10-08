@@ -6,4 +6,6 @@ import uz.gita.music_player_io.data.model.MusicData
 interface HomeViewModel {
 
     fun getAllMusics(): Flow<List<MusicData>>
+
+    fun refreshAllMusics()
 }

@@ -2,6 +2,8 @@ package uz.gita.music_player_io.presentation.screens.home.pages.songs
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import uz.gita.music_player_io.R
 import uz.gita.music_player_io.data.model.MusicData
@@ -11,17 +13,14 @@ import uz.gita.music_player_io.databinding.ItemSongBinding
  *  Created by Nurlibay Koshkinbaev on 08/10/2022 13:57
  */
 
-class SongsAdapter : RecyclerView.Adapter<SongsAdapter.SongsViewHolder>() {
-
-    var musicList = mutableListOf<MusicData>()
+class SongsAdapter : ListAdapter<MusicData, SongsAdapter.SongsViewHolder>(SongsAdapterComparator) {
 
     inner class SongsViewHolder(private val binding: ItemSongBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind() {
-            val data = musicList[absoluteAdapterPosition]
-            binding.tvSongName.text = data.displayName
-            binding.tvSongDescription.text = data.artistName
-            binding.tvSongDuration.text = data.duration.toString()
+            binding.tvSongName.text = getItem(absoluteAdapterPosition).displayName
+            binding.tvSongDescription.text = getItem(absoluteAdapterPosition).artistName
+            binding.tvSongDuration.text = getItem(absoluteAdapterPosition).duration.toString()
         }
     }
 
@@ -37,6 +36,18 @@ class SongsAdapter : RecyclerView.Adapter<SongsAdapter.SongsViewHolder>() {
         holder.bind()
     }
 
-    override fun getItemCount() = musicList.size
+}
+
+object SongsAdapterComparator: DiffUtil.ItemCallback<MusicData>() {
+
+    override fun areItemsTheSame(oldItem: MusicData, newItem: MusicData): Boolean {
+        return oldItem.id == newItem.id
+    }
+
+    override fun areContentsTheSame(oldItem: MusicData, newItem: MusicData): Boolean {
+        return oldItem.id == newItem.id && oldItem.data == newItem.data && oldItem.displayName == newItem.data &&
+                oldItem.album == newItem.album && oldItem.duration == newItem.duration && oldItem.title == newItem.title && oldItem.path == newItem.path
+
+    }
 
 }
