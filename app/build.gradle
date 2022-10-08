@@ -93,4 +93,6 @@ dependencies {
     implementation 'ru.ldralighieri.corbind:corbind:1.5.5'
 
     implementation("com.tbuonomo:dotsindicator:4.3")
+
+    implementation 'com.karumi:dexter:6.2.3'
 }

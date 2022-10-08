@@ -5,12 +5,12 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import uz.gita.music_player_io.domain.MusicsUseCase
 import uz.gita.music_player_io.domain.SplashUseCase
 import uz.gita.music_player_io.presentation.viewmodels.SplashViewModel
 import javax.inject.Inject
+
 @HiltViewModel
 class SplashViewModelImpl @Inject constructor(
     private val splashUseCase: SplashUseCase,
@@ -21,16 +21,17 @@ class SplashViewModelImpl @Inject constructor(
 
     override val openMainFlow = MutableSharedFlow<Unit>()
 
-    init {
+    override fun openScreens() {
         viewModelScope.launch {
+            musicsUseCase.refreshMusics()
+            delay(1000)
             if (splashUseCase.getIsFirst()) {
-                delay(1500)
                 openIntroFlow.emit(Unit)
             } else {
-                musicsUseCase.refreshMusics()
                 openMainFlow.emit(Unit)
             }
         }
     }
+
 
 }

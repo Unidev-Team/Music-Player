@@ -29,43 +29,13 @@ class MainScreen : Fragment(R.layout.screen_main) {
     private lateinit var navController: NavController
     private val viewModel: HomeViewModel by viewModels<HomeViewModelImpl>()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        requestRuntimePermission()
-
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding.bnv.setOnItemReselectedListener {
-            navController = Navigation.findNavController(requireActivity(), R.id.fragment_container_view)
+            navController =
+                Navigation.findNavController(requireActivity(), R.id.fragment_container_view)
             binding.bnv.setupWithNavController(navController)
         }
     }
 
-    private fun requestRuntimePermission() {
-        if (ActivityCompat.checkSelfPermission(
-                requireContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            ActivityCompat.requestPermissions(
-                requireActivity(), arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), 13
-            )
-        }
-    }
-
-    override fun onRequestPermissionsResult(
-        requestCode: Int, permissions: Array<out String>, grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == 13) {
-            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                viewModel.refreshAllMusics()
-            } else {
-                ActivityCompat.requestPermissions(
-                    requireActivity(), arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), 13
-                )
-            }
-        }
-    }
 }

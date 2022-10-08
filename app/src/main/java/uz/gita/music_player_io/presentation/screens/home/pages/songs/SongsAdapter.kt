@@ -18,9 +18,19 @@ class SongsAdapter : ListAdapter<MusicData, SongsAdapter.SongsViewHolder>(SongsA
     inner class SongsViewHolder(private val binding: ItemSongBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind() {
-            binding.tvSongName.text = getItem(absoluteAdapterPosition).displayName
-            binding.tvSongDescription.text = getItem(absoluteAdapterPosition).artistName
+            binding.tvSongName.apply {
+                text = getItem(absoluteAdapterPosition).title
+                isSelected = true
+                setSingleLine()
+            }
+            binding.tvSongDescription.apply {
+                isSelected = true
+                setSingleLine()
+                text = getItem(absoluteAdapterPosition).artistName
+            }
             binding.tvSongDuration.text = getItem(absoluteAdapterPosition).duration.toString()
+
+
         }
     }
 
@@ -38,7 +48,7 @@ class SongsAdapter : ListAdapter<MusicData, SongsAdapter.SongsViewHolder>(SongsA
 
 }
 
-object SongsAdapterComparator: DiffUtil.ItemCallback<MusicData>() {
+object SongsAdapterComparator : DiffUtil.ItemCallback<MusicData>() {
 
     override fun areItemsTheSame(oldItem: MusicData, newItem: MusicData): Boolean {
         return oldItem.id == newItem.id

@@ -9,4 +9,6 @@ interface SplashViewModel {
 
     val openMainFlow: SharedFlow<Unit>
 
+    fun openScreens()
+
 }

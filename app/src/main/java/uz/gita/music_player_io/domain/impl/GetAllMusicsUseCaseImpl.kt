@@ -19,35 +19,6 @@ class GetAllMusicsUseCaseImpl @Inject constructor(
 ) : GetAllMusicsUseCase {
 
     override suspend fun getAllMusics(): List<MusicData> {
-        val musicList = ArrayList<MusicData>()
-
-        val selection = MediaStore.Audio.Media.IS_MUSIC + " != 0"
-
-        val projection = arrayOf(
-            MediaStore.Audio.Media._ID,
-            MediaStore.Audio.Media.ARTIST,
-            MediaStore.Audio.Media.ALBUM,
-            MediaStore.Audio.Media.TITLE,
-            MediaStore.Audio.Media.DISPLAY_NAME,
-            MediaStore.Audio.Media.DURATION,
-            MediaStore.Audio.Media.DATA,
-            MediaStore.Audio.Media.ALBUM_ID
-        )
-        val cursor: Cursor? = ctx.contentResolver.query(
-            MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
-            projection,
-            selection,
-            null,
-            null
-        )
-
-        Timber.d(cursor?.toString())
-
-      /*  for (i in 0 until cursor?.count!!) {
-            cursor.moveToNext()
-            musicList.add(cursor.toMusicData(ctx))
-        }*/
-
         return loadAllMusicsFromStorage()
     }
 

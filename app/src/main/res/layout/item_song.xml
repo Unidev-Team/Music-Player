@@ -2,7 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/iv_artist"
@@ -31,9 +32,11 @@
             android:id="@+id/tv_song_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Starboy"
+            tools:text="Star boy"
+            android:ellipsize="marquee"
             android:textColor="@color/white"
             android:textSize="18sp"
+            android:maxWidth="200dp"
             android:textStyle="bold" />
 
         <LinearLayout
@@ -45,7 +48,9 @@
                 android:id="@+id/tv_song_description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="The Weekend, Daf..."
+                tools:text="The Weekend, Daf..."
+                android:maxWidth="130dp"
+                android:ellipsize="end"
                 android:textColor="@color/white" />
 
             <TextView
@@ -59,7 +64,7 @@
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="03:50 mins"
+                tools:text="03:50 mins"
                 android:textColor="@color/white"
                 android:id="@+id/tv_song_duration"
                 android:textStyle="bold" />
@@ -70,14 +75,14 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/iv_play"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
         android:layout_gravity="center_vertical"
         android:padding="@dimen/margin_middle"
         android:src="@drawable/play"
+        android:background="@drawable/bg_main_icon"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/iv_menu"
-        app:layout_constraintStart_toEndOf="@id/music_details"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatImageView
