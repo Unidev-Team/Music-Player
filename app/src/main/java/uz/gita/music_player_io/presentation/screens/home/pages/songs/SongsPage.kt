@@ -16,6 +16,7 @@ import uz.gita.music_player_io.data.pref.MySharedPref
 import uz.gita.music_player_io.databinding.PageSongsBinding
 import uz.gita.music_player_io.presentation.viewmodels.HomeViewModel
 import uz.gita.music_player_io.presentation.viewmodels.impl.HomeViewModelImpl
+import uz.gita.music_player_io.utils.MusicPlaying
 import javax.inject.Inject
 
 /**
@@ -34,7 +35,12 @@ class SongsPage : Fragment(R.layout.page_songs) {
         binding.rvSongs.adapter = adapter
         viewModel.getAllMusics()
         viewModel.getAllMusics().onEach {
+            MusicPlaying.setMusicList(it)
             adapter.submitList(it)
         }.launchIn(lifecycleScope)
+
+        adapter.setItemClickListener {
+            MusicPlaying.clickMusic(it)
+        }
     }
 }

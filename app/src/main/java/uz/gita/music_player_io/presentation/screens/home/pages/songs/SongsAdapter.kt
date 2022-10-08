@@ -15,8 +15,17 @@ import uz.gita.music_player_io.databinding.ItemSongBinding
 
 class SongsAdapter : ListAdapter<MusicData, SongsAdapter.SongsViewHolder>(SongsAdapterComparator) {
 
+    private var itemItemClick: ((Int) -> Unit)? = null
+
     inner class SongsViewHolder(private val binding: ItemSongBinding) :
         RecyclerView.ViewHolder(binding.root) {
+
+        init {
+            binding.root.setOnClickListener {
+                itemItemClick?.invoke(absoluteAdapterPosition)
+            }
+        }
+
         fun bind() {
             binding.tvSongName.apply {
                 text = getItem(absoluteAdapterPosition).title
@@ -46,6 +55,9 @@ class SongsAdapter : ListAdapter<MusicData, SongsAdapter.SongsViewHolder>(SongsA
         holder.bind()
     }
 
+    fun setItemClickListener(block: (Int) -> Unit) {
+        itemItemClick = block
+    }
 }
 
 object SongsAdapterComparator : DiffUtil.ItemCallback<MusicData>() {

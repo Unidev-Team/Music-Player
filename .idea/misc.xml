@@ -5,11 +5,19 @@
       <map>
         <entry key="..\:/Users/Jamshid/AndroidStudioProjects/MusicPlayerPro/app/src/main/res/drawable/bg_main_icon.xml" value="0.119" />
         <entry key="..\:/Users/Jamshid/AndroidStudioProjects/MusicPlayerPro/app/src/main/res/drawable/ic_music.xml" value="0.119" />
-        <entry key="..\:/Users/Jamshid/AndroidStudioProjects/MusicPlayerPro/app/src/main/res/layout/activity_main.xml" value="0.152" />
-        <entry key="..\:/Users/Jamshid/AndroidStudioProjects/MusicPlayerPro/app/src/main/res/layout/item_song.xml" value="0.2039333048311244" />
+        <entry key="..\:/Users/Jamshid/AndroidStudioProjects/MusicPlayerPro/app/src/main/res/layout/activity_main.xml" value="0.2484375" />
         <entry key="..\:/Users/Jamshid/AndroidStudioProjects/MusicPlayerPro/app/src/main/res/layout/screen_intro.xml" value="0.2039333048311244" />
-        <entry key="..\:/Users/Jamshid/AndroidStudioProjects/MusicPlayerPro/app/src/main/res/layout/screen_main.xml" value="0.2039333048311244" />
         <entry key="..\:/Users/Jamshid/AndroidStudioProjects/MusicPlayerPro/app/src/main/res/layout/screen_splash.xml" value="0.152" />
+        <entry key="..\:/Users/Rasulbek/AndroidStudioProjects/Music-Player/app/src/main/res/layout/activity_main.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/Rasulbek/AndroidStudioProjects/Music-Player/app/src/main/res/layout/item_intro_viewpager.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/Rasulbek/AndroidStudioProjects/Music-Player/app/src/main/res/layout/screen_intro.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/User/StudioProjects/Music-Player/app/src/main/res/drawable/ic_next.xml" value="0.1855" />
+        <entry key="..\:/Users/User/StudioProjects/Music-Player/app/src/main/res/drawable/ic_pause.xml" value="0.1855" />
+        <entry key="..\:/Users/User/StudioProjects/Music-Player/app/src/main/res/layout/bottom_music_view.xml" value="0.20697463768115942" />
+        <entry key="..\:/Users/User/StudioProjects/Music-Player/app/src/main/res/layout/item_song.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/User/StudioProjects/Music-Player/app/src/main/res/layout/screen_home.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/User/StudioProjects/Music-Player/app/src/main/res/layout/screen_main.xml" value="0.264" />
+        <entry key="..\:/Users/User/StudioProjects/Music-Player/app/src/main/res/layout/screen_playlist.xml" value="0.18802083333333333" />
       </map>
     </option>
   </component>
