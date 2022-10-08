@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import uz.gita.music_player_io.domain.MusicsUseCase
@@ -16,9 +17,9 @@ class SplashViewModelImpl @Inject constructor(
     private val musicsUseCase: MusicsUseCase
 ) : SplashViewModel, ViewModel() {
 
-    override val openIntroFlow = MutableStateFlow(Unit)
+    override val openIntroFlow = MutableSharedFlow<Unit>()
 
-    override val openMainFlow = MutableStateFlow(Unit)
+    override val openMainFlow = MutableSharedFlow<Unit>()
 
     init {
         viewModelScope.launch {
