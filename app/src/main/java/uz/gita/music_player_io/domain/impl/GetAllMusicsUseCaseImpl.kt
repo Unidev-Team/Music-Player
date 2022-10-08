@@ -3,7 +3,9 @@ package uz.gita.music_player_io.domain.impl
 import android.content.Context
 import android.database.Cursor
 import android.provider.MediaStore
+import android.util.Log
 import dagger.hilt.android.qualifiers.ApplicationContext
+import timber.log.Timber
 import uz.gita.music_player_io.data.model.MusicData
 import uz.gita.music_player_io.domain.GetAllMusicsUseCase
 import uz.gita.music_player_io.utils.toMusicData
@@ -41,6 +43,7 @@ class GetAllMusicsUseCaseImpl @Inject constructor(
             cursor.moveToPosition(i)
             musicList.add(cursor.toMusicData(ctx))
         }
+        Timber.tag("qosiqlar").d(musicList.toString())
         return musicList
     }
 }

@@ -12,7 +12,6 @@ class MusicsUseCaseImpl @Inject constructor(
     private val getAllMusicsUseCase: GetAllMusicsUseCase
 ) : MusicsUseCase {
 
-
     override suspend fun updateMusic(musicData: MusicData) =
         dao.updateMusic(musicData)
 

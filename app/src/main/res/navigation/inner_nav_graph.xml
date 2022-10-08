@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/inner_nav_graph"
+    app:startDestination="@id/homeScreen">
+
+    <fragment
+        android:id="@+id/homeScreen"
+        android:name="uz.gita.music_player_io.presentation.screens.home.HomeScreen"
+        android:label="HomeScreen"
+        tools:layout="@layout/screen_home" />
+    <fragment
+        android:id="@+id/settingsScreen"
+        android:name="uz.gita.music_player_io.presentation.screens.settings.SettingsScreen"
+        android:label="SettingsScreen"
+        tools:layout="@layout/screen_settings" />
+    <fragment
+        android:id="@+id/playlistScreen"
+        android:name="uz.gita.music_player_io.presentation.screens.playlist.PlaylistScreen"
+        android:label="PlaylistScreen"
+        tools:layout="@layout/screen_playlist" />
+    <fragment
+        android:id="@+id/favouriteScreen"
+        android:name="uz.gita.music_player_io.presentation.screens.favourite.FavouriteScreen"
+        android:label="FavouriteScreen"
+        tools:layout="@layout/screen_favourite" />
+</navigation>

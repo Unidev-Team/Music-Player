@@ -4,12 +4,9 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
 import uz.gita.music_player_io.R
 import uz.gita.music_player_io.databinding.ScreenIntroBinding
 import uz.gita.music_player_io.presentation.screens.intro.adapter.IntroAdapter
@@ -30,10 +27,12 @@ class IntroScreen : Fragment(R.layout.screen_intro) {
         binding.btnNextIntro.setOnClickListener {
             count++
             if (count == 2) {
-                viewModel.openMainFlow.onEach {
-                    findNavController().navigate(IntroScreenDirections.actionIntroScreenToMainScreen())
-                }.launchIn(lifecycleScope)
                 binding.btnNextIntro.text = getString(R.string.get_started)
+            }
+            if (count == 3) {
+                findNavController().navigate(IntroScreenDirections.actionIntroScreenToMainScreen())
+            } else {
+                binding.viewPagerIntro.setCurrentItem(count, true)
             }
         }
         binding.viewPagerIntro.isUserInputEnabled = false
