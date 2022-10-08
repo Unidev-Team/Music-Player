@@ -4,6 +4,12 @@
         <item name="cornerSize" >
             20%
         </item>
-
     </style>
+
+    <style name="ShapeImageDetail" >
+        <item name="cornerSize" >
+            12%
+        </item>
+    </style>
+
 </resources>
