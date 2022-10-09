@@ -6,6 +6,7 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
@@ -14,6 +15,7 @@ import timber.log.Timber
 import uz.gita.music_player_io.R
 import uz.gita.music_player_io.data.pref.MySharedPref
 import uz.gita.music_player_io.databinding.PageSongsBinding
+import uz.gita.music_player_io.presentation.screens.main.MainScreenDirections
 import uz.gita.music_player_io.presentation.viewmodels.HomeViewModel
 import uz.gita.music_player_io.presentation.viewmodels.impl.HomeViewModelImpl
 import uz.gita.music_player_io.utils.MusicPlaying
@@ -41,6 +43,7 @@ class SongsPage : Fragment(R.layout.page_songs) {
 
         adapter.setItemClickListener {
             MusicPlaying.clickMusic(it)
+            findNavController().navigate(MainScreenDirections.actionMainScreenToMusicDetailScreen())
         }
     }
 }

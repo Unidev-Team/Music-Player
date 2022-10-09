@@ -9,7 +9,11 @@
         android:name="uz.gita.music_player_io.presentation.screens.main.MainScreen"
         android:label="MainScreen"
         tools:layout="@layout/screen_main"
-        />
+        >
+        <action
+            android:id="@+id/action_mainScreen_to_musicDetailScreen"
+            app:destination="@id/musicDetailScreen" />
+    </fragment>
     <fragment
         android:id="@+id/introScreen"
         android:name="uz.gita.music_player_io.presentation.screens.intro.IntroScreen"
@@ -32,5 +36,14 @@
         <action
             android:id="@+id/action_splashScreen_to_mainScreen"
             app:destination="@id/mainScreen" />
+
     </fragment>
+
+    <fragment
+        android:id="@+id/musicDetailScreen"
+        android:name="uz.gita.music_player_io.presentation.screens.playing.MusicDetailScreen"
+        android:label="MusicDetailScreen"
+        tools:layout="@layout/screen_music_detail"
+        />
+
 </navigation>

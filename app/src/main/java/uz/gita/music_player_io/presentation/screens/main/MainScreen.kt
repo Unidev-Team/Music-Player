@@ -27,7 +27,6 @@ class MainScreen : Fragment(R.layout.screen_main) {
 
     private val binding: ScreenMainBinding by viewBinding()
     private lateinit var navController: NavController
-    private var mediaPlayer: MediaPlayer? = null
     private var isPlaying = false
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -39,11 +38,11 @@ class MainScreen : Fragment(R.layout.screen_main) {
 
         binding.iconPlayOrPause.setOnClickListener {
             if (isPlaying) {
-                mediaPlayer?.pause()
+                MusicPlaying.pauseMusic()
                 binding.iconPlayOrPause.setImageResource(R.drawable.ic_pause)
             } else {
+                MusicPlaying.startMusic()
                 binding.iconPlayOrPause.setImageResource(R.drawable.play)
-                mediaPlayer?.start()
             }
             isPlaying = !isPlaying
         }
@@ -63,16 +62,10 @@ class MainScreen : Fragment(R.layout.screen_main) {
             binding.bottomMusicContainer.visibility = View.VISIBLE
         }
 
-        if (mediaPlayer != null && mediaPlayer?.isPlaying!!) {
-            mediaPlayer?.stop()
-        }
-
         binding.apply {
-            mediaPlayer = MediaPlayer.create(requireContext(), Uri.parse(it.path))
             imgAlbum.setImageURI(Uri.parse(it.image))
             tvSingerSong.text = "${it.artistName} - ${it.title}"
             isPlaying = true
-            mediaPlayer?.start()
         }
     }
 }
