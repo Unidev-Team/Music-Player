@@ -10,9 +10,6 @@ import uz.gita.music_player_io.data.model.MusicData
 
 object MusicPlaying {
 
-//    @Inject
-//    @ApplicationContext lateinit var context: Context
-
     var mediaPlayer: MediaPlayer? = null
 
     val musicLiveData = MutableLiveData<MusicData>()
@@ -48,12 +45,11 @@ object MusicPlaying {
 
     fun startMusic() {
         mediaPlayer?.seekTo(currentDuration)
-        Log.d("TTT", currentDuration.toString())
         mediaPlayer?.start()
     }
 
     fun pauseMusic() {
-        mediaPlayer?.pause()
         currentDuration = mediaPlayer?.currentPosition!!
+        mediaPlayer?.pause()
     }
 }
