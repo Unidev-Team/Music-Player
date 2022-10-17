@@ -2,12 +2,14 @@ package uz.gita.music_player_io.presentation.screens.playing
 
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
 import uz.gita.music_player_io.R
 import uz.gita.music_player_io.databinding.ScreenMusicDetailBinding
@@ -43,6 +45,7 @@ class MusicDetailScreen: Fragment(R.layout.screen_music_detail) {
         changeUI(MusicPlaying.positionMusic)
 
         isPlaying = true
+        binding.iconStopOrPlay.setImageResource(R.drawable.ic_pause)
 
         binding.apply {
             iconBack.setOnClickListener {
@@ -78,7 +81,6 @@ class MusicDetailScreen: Fragment(R.layout.screen_music_detail) {
     }
 
     private val clickStopOrStartObserver = Observer<Unit> {
-        MusicPlaying.clickMusic(MusicPlaying.positionMusic)
         if (isPlaying) {
             MusicPlaying.pauseMusic()
             binding.iconStopOrPlay.setImageResource(R.drawable.play)
@@ -93,7 +95,12 @@ class MusicDetailScreen: Fragment(R.layout.screen_music_detail) {
         binding.apply {
             tvSinger.text = MusicPlaying.listMusics[pos].artistName
             tvSong.text = MusicPlaying.listMusics[pos].title
-            imgAlbum.setImageURI(Uri.parse(MusicPlaying.listMusics[pos].album))
+
+            Glide
+                .with(requireContext())
+                .load(MusicPlaying.listMusics[pos].image)
+                .placeholder(R.drawable.ic_music)
+                .into(binding.imgAlbum)
         }
     }
 }

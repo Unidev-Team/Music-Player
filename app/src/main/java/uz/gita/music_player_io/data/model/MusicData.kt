@@ -14,7 +14,6 @@ data class MusicData(
     val title: String,
     val displayName: String,
     val duration: Long,
-    val data: String,
     val image: String,
     val path: String
 ) : Serializable

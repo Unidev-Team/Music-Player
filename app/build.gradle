@@ -39,9 +39,10 @@ android {
 }
 
 dependencies {
-
+    
     def room_version = "2.4.3"
     def nav_version = "2.5.1"
+    def work_version = "2.7.1"
 
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.core:core-ktx:1.8.0'
@@ -82,17 +83,22 @@ dependencies {
     //Timber
     implementation 'com.jakewharton.timber:timber:5.0.1'
 
-    def work_version = "2.7.1"
-
     // (Java only)
     implementation "androidx.work:work-runtime:$work_version"
 
     //power menu
     implementation "com.github.skydoves:powermenu:2.2.0"
 
+    //corbind
     implementation 'ru.ldralighieri.corbind:corbind:1.5.5'
 
+    //dots
     implementation("com.tbuonomo:dotsindicator:4.3")
 
+    //glide
+    implementation 'com.github.bumptech.glide:glide:4.14.2'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.14.2'
+
+    //dexter
     implementation 'com.karumi:dexter:6.2.3'
 }

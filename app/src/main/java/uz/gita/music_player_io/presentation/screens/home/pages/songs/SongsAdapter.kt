@@ -65,7 +65,7 @@ object SongsAdapterComparator : DiffUtil.ItemCallback<MusicData>() {
     }
 
     override fun areContentsTheSame(oldItem: MusicData, newItem: MusicData): Boolean {
-        return oldItem.id == newItem.id && oldItem.data == newItem.data && oldItem.displayName == newItem.data &&
+        return oldItem.id == newItem.id && oldItem.displayName == newItem.displayName &&
                 oldItem.album == newItem.album && oldItem.duration == newItem.duration && oldItem.title == newItem.title && oldItem.path == newItem.path
 
     }

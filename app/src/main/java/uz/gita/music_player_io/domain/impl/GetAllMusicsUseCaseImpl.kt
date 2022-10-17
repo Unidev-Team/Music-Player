@@ -53,7 +53,7 @@ class GetAllMusicsUseCaseImpl @Inject constructor(
                     val idC =
                         cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media._ID))
                     val albumC =
-                        cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.ALBUM))
+                        cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Albums.ALBUM))
                     val artistC =
                         cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.ARTIST))
                     val pathC =
@@ -73,7 +73,6 @@ class GetAllMusicsUseCaseImpl @Inject constructor(
                         duration = durationC,
                         image = artUriC,
                         displayName = "",
-                        data = "",
                         path = pathC
                     )
                     val file = File(music.path)
