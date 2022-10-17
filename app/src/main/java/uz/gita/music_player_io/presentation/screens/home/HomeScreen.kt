@@ -31,5 +31,4 @@ class HomeScreen : Fragment(R.layout.screen_home) {
             tab.text = list[pos]
         }.attach()
     }
-
 }

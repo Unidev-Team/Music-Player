@@ -77,11 +77,13 @@ class MusicDetailScreen : Fragment(R.layout.screen_music_detail) {
     private val clickPreviousObserver = Observer<Unit> {
         MusicPlaying.clickMusic(MusicPlaying.positionMusic - 1)
         changeUI(MusicPlaying.positionMusic)
+        binding.iconStopOrPlay.setImageResource(R.drawable.ic_pause)
     }
 
     private val clickNextSongObserver = Observer<Unit> {
         MusicPlaying.clickMusic(MusicPlaying.positionMusic + 1)
         changeUI(MusicPlaying.positionMusic)
+        binding.iconStopOrPlay.setImageResource(R.drawable.ic_pause)
     }
 
     private val clickStopOrStartObserver = Observer<Unit> {
@@ -124,8 +126,7 @@ class MusicDetailScreen : Fragment(R.layout.screen_music_detail) {
         CoroutineScope(Dispatchers.Main).launch {
             while (true) {
                 delay(100)
-                val percent =
-                    MusicPlaying.mediaPlayer?.currentPosition!! * 100 / MusicPlaying.mediaPlayer!!.duration
+                val percent = MusicPlaying.mediaPlayer?.currentPosition!! * 100 / MusicPlaying.mediaPlayer!!.duration
                 binding.musicSeekBar.progress = percent
             }
         }

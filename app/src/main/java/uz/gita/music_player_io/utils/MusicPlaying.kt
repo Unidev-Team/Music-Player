@@ -18,8 +18,6 @@ object MusicPlaying {
 
     var listMusics: List<MusicData> = emptyList()
 
-    var currentDuration = -1
-
     fun clickMusic(pos: Int) {
 
         positionMusic = if (pos == listMusics.size) {
@@ -44,12 +42,10 @@ object MusicPlaying {
     }
 
     fun startMusic() {
-        mediaPlayer?.seekTo(currentDuration)
         mediaPlayer?.start()
     }
 
     fun pauseMusic() {
-        currentDuration = mediaPlayer?.currentPosition!!
         mediaPlayer?.pause()
     }
 }
