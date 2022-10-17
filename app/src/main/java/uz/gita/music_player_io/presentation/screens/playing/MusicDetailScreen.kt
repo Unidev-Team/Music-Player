@@ -1,9 +1,8 @@
 package uz.gita.music_player_io.presentation.screens.playing
 
-import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.View
+import android.widget.SeekBar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -11,6 +10,11 @@ import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import ru.ldralighieri.corbind.widget.SeekBarProgressChangeEvent
 import uz.gita.music_player_io.R
 import uz.gita.music_player_io.databinding.ScreenMusicDetailBinding
 import uz.gita.music_player_io.presentation.viewmodels.MusicDetailViewModel
@@ -18,7 +22,7 @@ import uz.gita.music_player_io.presentation.viewmodels.impl.MusicDetailViewModel
 import uz.gita.music_player_io.utils.MusicPlaying
 
 @AndroidEntryPoint
-class MusicDetailScreen: Fragment(R.layout.screen_music_detail) {
+class MusicDetailScreen : Fragment(R.layout.screen_music_detail) {
 
     private val viewModel: MusicDetailViewModel by viewModels<MusicDetailViewModelImpl>()
 
@@ -101,6 +105,29 @@ class MusicDetailScreen: Fragment(R.layout.screen_music_detail) {
                 .load(MusicPlaying.listMusics[pos].image)
                 .placeholder(R.drawable.ic_music)
                 .into(binding.imgAlbum)
+
+            musicSeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+                override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                    val dur = MusicPlaying.mediaPlayer?.duration!! * progress / 100
+                    if(fromUser) MusicPlaying.mediaPlayer?.seekTo(dur)
+                }
+                override fun onStartTrackingTouch(p0: SeekBar?) = Unit
+                override fun onStopTrackingTouch(p0: SeekBar?) = Unit
+            })
+
+            changeSeekBar()
+
+        }
+    }
+
+    private fun changeSeekBar() {
+        CoroutineScope(Dispatchers.Main).launch {
+            while (true) {
+                delay(100)
+                val percent =
+                    MusicPlaying.mediaPlayer?.currentPosition!! * 100 / MusicPlaying.mediaPlayer!!.duration
+                binding.musicSeekBar.progress = percent
+            }
         }
     }
 }
