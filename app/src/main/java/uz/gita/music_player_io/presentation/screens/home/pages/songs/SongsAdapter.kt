@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import uz.gita.music_player_io.R
 import uz.gita.music_player_io.data.model.MusicData
 import uz.gita.music_player_io.databinding.ItemSongBinding
@@ -38,6 +39,11 @@ class SongsAdapter : ListAdapter<MusicData, SongsAdapter.SongsViewHolder>(SongsA
                 text = getItem(absoluteAdapterPosition).artistName
             }
             binding.tvSongDuration.text = getItem(absoluteAdapterPosition).duration.toString()
+
+            Glide
+                .with(binding.root.context)
+                .load(getItem(absoluteAdapterPosition).image)
+                .into(binding.ivArtist)
         }
     }
 

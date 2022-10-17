@@ -3,6 +3,7 @@ package uz.gita.music_player_io.presentation.screens.playing
 import android.os.Bundle
 import android.view.View
 import android.widget.SeekBar
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -10,10 +11,7 @@ import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import ru.ldralighieri.corbind.widget.SeekBarProgressChangeEvent
 import uz.gita.music_player_io.R
 import uz.gita.music_player_io.databinding.ScreenMusicDetailBinding
@@ -29,6 +27,8 @@ class MusicDetailScreen : Fragment(R.layout.screen_music_detail) {
     private val binding: ScreenMusicDetailBinding by viewBinding(ScreenMusicDetailBinding::bind)
 
     private var isPlaying = false
+
+    private var job: Job? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -75,9 +75,13 @@ class MusicDetailScreen : Fragment(R.layout.screen_music_detail) {
     }
 
     private val clickPreviousObserver = Observer<Unit> {
-        MusicPlaying.clickMusic(MusicPlaying.positionMusic - 1)
-        changeUI(MusicPlaying.positionMusic)
-        binding.iconStopOrPlay.setImageResource(R.drawable.ic_pause)
+        if (MusicPlaying.positionMusic > 0) {
+            MusicPlaying.clickMusic(MusicPlaying.positionMusic - 1)
+            changeUI(MusicPlaying.positionMusic)
+            binding.iconStopOrPlay.setImageResource(R.drawable.ic_pause)
+        } else {
+            Toast.makeText(requireContext(), "First Song!", Toast.LENGTH_SHORT).show()
+        }
     }
 
     private val clickNextSongObserver = Observer<Unit> {
@@ -105,7 +109,6 @@ class MusicDetailScreen : Fragment(R.layout.screen_music_detail) {
             Glide
                 .with(requireContext())
                 .load(MusicPlaying.listMusics[pos].image)
-                .placeholder(R.drawable.ic_music)
                 .into(binding.imgAlbum)
 
             musicSeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
@@ -123,12 +126,17 @@ class MusicDetailScreen : Fragment(R.layout.screen_music_detail) {
     }
 
     private fun changeSeekBar() {
-        CoroutineScope(Dispatchers.Main).launch {
+        job = CoroutineScope(Dispatchers.Main).launch {
             while (true) {
                 delay(100)
                 val percent = MusicPlaying.mediaPlayer?.currentPosition!! * 100 / MusicPlaying.mediaPlayer!!.duration
                 binding.musicSeekBar.progress = percent
             }
         }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        job?.cancel()
     }
 }
