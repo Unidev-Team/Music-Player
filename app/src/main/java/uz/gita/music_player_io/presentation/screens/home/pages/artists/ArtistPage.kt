@@ -5,12 +5,14 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import uz.gita.music_player_io.R
 import uz.gita.music_player_io.databinding.PageArtistsBinding
+import uz.gita.music_player_io.presentation.screens.main.MainScreenDirections
 import uz.gita.music_player_io.presentation.viewmodels.ArtistPageViewModel
 import uz.gita.music_player_io.presentation.viewmodels.impl.ArtistPageViewModelImpl
 
@@ -18,7 +20,7 @@ import uz.gita.music_player_io.presentation.viewmodels.impl.ArtistPageViewModelI
  *  Created by Nurlibay Koshkinbaev on 08/10/2022 12:28
  */
 @AndroidEntryPoint
-class ArtistPage: Fragment(R.layout.page_artists) {
+class ArtistPage : Fragment(R.layout.page_artists) {
 
     private val adapter by lazy { ArtistAdapter() }
     private val binding: PageArtistsBinding by viewBinding()
@@ -32,5 +34,13 @@ class ArtistPage: Fragment(R.layout.page_artists) {
         viewModel.artistFlow.onEach {
             adapter.submitList(it)
         }.launchIn(viewLifecycleOwner.lifecycleScope)
+
+        adapter.setItemClickListener {
+            findNavController().navigate(
+                MainScreenDirections.actionMainScreenToArtistDetailScreen(
+                    it
+                )
+            )
+        }
     }
 }

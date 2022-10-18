@@ -32,8 +32,12 @@ interface MusicDao {
         deleteAllMusics()
         insertMusic(musicList)
     }
-    @Query("SELECT artistName,image,sum(id) as count FROM musics group by artistName")
+    @Query("SELECT artistName,image,count(id) as count FROM musics group by artistName")
     suspend fun getAllArtist() :List<ArtistData>
+
+    @Query("SELECT * FROM musics WHERE artistName = :artistName")
+    suspend fun getAllSongsByArtist(artistName:String):List<MusicData>
+
 
 
 }
