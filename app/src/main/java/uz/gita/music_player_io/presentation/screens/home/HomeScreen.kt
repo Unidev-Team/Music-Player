@@ -21,10 +21,10 @@ import uz.gita.music_player_io.presentation.viewmodels.impl.HomeViewModelImpl
 class HomeScreen : Fragment(R.layout.screen_home) {
 
     private val binding: ScreenHomeBinding by viewBinding()
-
+    private val adapter by lazy { HomeViewPagerAdapter(requireActivity()) }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.pagerMain.adapter = HomeViewPagerAdapter(requireActivity())
+        binding.pagerMain.adapter = adapter
         val list = listOf("Songs", "Artists", "Albums")
         TabLayoutMediator(binding.tabMain, binding.pagerMain) { tab, pos ->
             tab.text = list[pos]
