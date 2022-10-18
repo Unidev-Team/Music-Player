@@ -40,12 +40,13 @@ class BottomSheetDialog : BottomSheetDialogFragment() {
             btnCancel.setOnClickListener {
                 dismiss()
             }
+
             btnCreate.setOnClickListener {
                 lifecycleScope.launch {
                     viewModel.addNewPlaylist(PlaylistData(0, etPlaylistName.text.toString()))
+                    dismiss()
                 }
             }
         }
     }
-
 }
