@@ -6,4 +6,13 @@
     <string name="playlist">Playlist</string>
     <string name="settings">Settings</string>
     <string name="get_started">Get started</string>
+    <string name="playlists">Playlists</string>
+    <string name="_14_playlists">14 playlists</string>
+    <string name="recently_added">Recently added</string>
+    <string name="add_new_playlist">Add New Playlist</string>
+    <string name="no_playlist_yet">No playlist yet</string>
+    <string name="new_playlist">New Playlist</string>
+    <string name="enter_playlist_name">Enter playlist name</string>
+    <string name="cancel">Cancel</string>
+    <string name="create">Create</string>
 </resources>

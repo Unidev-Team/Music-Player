@@ -4,14 +4,8 @@ import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
-import uz.gita.music_player_io.domain.ArtistUseCase
-import uz.gita.music_player_io.domain.GetAllMusicsUseCase
-import uz.gita.music_player_io.domain.MusicsUseCase
-import uz.gita.music_player_io.domain.SplashUseCase
-import uz.gita.music_player_io.domain.impl.ArtistUseCaseImpl
-import uz.gita.music_player_io.domain.impl.GetAllMusicsUseCaseImpl
-import uz.gita.music_player_io.domain.impl.MusicsUseCaseImpl
-import uz.gita.music_player_io.domain.impl.SplashUseCaseImpl
+import uz.gita.music_player_io.domain.*
+import uz.gita.music_player_io.domain.impl.*
 
 // Created by Jamshid Isoqov an 10/7/2022
 @Module
@@ -30,5 +24,6 @@ interface UseCaseModule {
     @Binds
     fun bindArtistUseCase(impl:ArtistUseCaseImpl):ArtistUseCase
 
-
+    @Binds
+    fun bindAddPlaylistUseCase(impl:PlaylistUseCaseImpl):PlaylistUseCase
 }

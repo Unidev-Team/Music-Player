@@ -1,6 +1,7 @@
 package uz.gita.music_player_io.data.model
 
 import android.os.Parcelable
+import androidx.room.Entity
 import kotlinx.parcelize.Parcelize
 
 @Parcelize

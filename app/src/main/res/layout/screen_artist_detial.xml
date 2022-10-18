@@ -1,171 +1,185 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
-<RelativeLayout
-    android:id="@+id/actionbar"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="?actionBarSize"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintTop_toTopOf="parent">
+    android:layout_height="match_parent">
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/btn_back"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_alignParentStart="true"
-        android:src="@drawable/ic_back"
-        android:padding="8dp"
-        android:layout_centerVertical="true"
-        android:layout_marginStart="8dp"/>
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/menu"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_alignParentEnd="true"
-        android:src="@drawable/ic_baseline_more_vert_24"
-        android:layout_centerVertical="true"
-        android:padding="8dp"
-        android:layout_marginEnd="8dp"/>
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/btn_search"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_centerVertical="true"
-        android:layout_toStartOf="@id/menu"
-        android:src="@drawable/search"
-        android:padding="10dp"/>
-</RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/actionbar"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/btn_back"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="8dp"
+            android:padding="8dp"
+            android:src="@drawable/ic_back" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/menu"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="8dp"
+            android:padding="8dp"
+            android:src="@drawable/ic_baseline_more_vert_24" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/btn_search"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:layout_toStartOf="@id/menu"
+            android:padding="10dp"
+            android:src="@drawable/search" />
+    </RelativeLayout>
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/img_album"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintWidth_percent="0.6"
-        app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintTop_toBottomOf="@id/actionbar"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:src="@drawable/artist"
-        android:scaleType="centerCrop"
         android:layout_marginVertical="@dimen/margin_standard"
+        android:scaleType="centerCrop"
+        android:src="@drawable/artist"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/actionbar"
+        app:layout_constraintWidth_percent="0.6"
         app:shapeAppearanceOverlay="@style/ShapeImageDetail" />
+
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_artis_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="@id/img_album"
-        app:layout_constraintEnd_toEndOf="@id/img_album"
-        app:layout_constraintTop_toBottomOf="@id/img_album"
-        tools:text="Ariana Grande"
-        android:textSize="28sp"
+        android:layout_marginTop="16dp"
         android:textColor="@color/white"
-        android:layout_marginTop="16dp"/>
+        android:textSize="28sp"
+        app:layout_constraintEnd_toEndOf="@id/img_album"
+        app:layout_constraintStart_toStartOf="@id/img_album"
+        app:layout_constraintTop_toBottomOf="@id/img_album"
+        tools:text="Ariana Grande" />
+
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_count_songs"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/tv_artis_name"
-        app:layout_constraintStart_toStartOf="@id/tv_artis_name"
-        app:layout_constraintEnd_toEndOf="@id/tv_artis_name"
-        tools:text="20 songs"
         android:layout_marginTop="12dp"
-        android:textColor="@color/color_text_description"/>
+        android:textColor="@color/color_text_description"
+        app:layout_constraintEnd_toEndOf="@id/tv_artis_name"
+        app:layout_constraintStart_toStartOf="@id/tv_artis_name"
+        app:layout_constraintTop_toBottomOf="@id/tv_artis_name"
+        tools:text="20 songs" />
+
     <LinearLayout
         android:id="@+id/btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/tv_count_songs"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="@dimen/margin_standard"
         android:orientation="horizontal"
-        android:layout_marginTop="@dimen/margin_standard">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_count_songs">
+
         <LinearLayout
             android:id="@+id/bnt_shuffle"
             android:layout_width="0dp"
             android:layout_height="50dp"
-            android:gravity="center"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="8dp"
             android:layout_weight="1"
             android:background="@drawable/bg_btn_shuffle"
-            android:orientation="horizontal"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="8dp">
+            android:gravity="center"
+            android:orientation="horizontal">
+
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_gravity="center"
-                android:src="@drawable/shuffle"/>
+                android:src="@drawable/shuffle" />
+
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Shuffle"
                 android:layout_gravity="center"
-                android:textColor="@color/white"
                 android:layout_marginStart="8dp"
-                android:textSize="18sp"/>
+                android:text="Shuffle"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
         </LinearLayout>
+
         <LinearLayout
             android:id="@+id/btn_play"
             android:layout_width="0dp"
             android:layout_height="50dp"
-            android:orientation="horizontal"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="16dp"
             android:layout_weight="1"
             android:background="@drawable/bg_btn_artist"
             android:gravity="center"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="16dp">
+            android:orientation="horizontal">
+
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_gravity="center"
-                android:src="@drawable/play"/>
+                android:src="@drawable/play" />
+
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Shuffle"
                 android:layout_gravity="center"
-                android:textColor="@color/white"
                 android:layout_marginStart="8dp"
-                android:textSize="18sp"/>
+                android:text="Shuffle"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
         </LinearLayout>
     </LinearLayout>
+
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/title_songs"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn"
-        android:text="Songs"
-        android:textSize="18sp"
-        android:textColor="@color/white"
         android:layout_marginStart="@dimen/margin_standard"
-        android:layout_marginTop="@dimen/margin_standard"/>
+        android:layout_marginTop="@dimen/margin_standard"
+        android:text="Songs"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list_artist_songs"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginTop="8dp"
         android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/item_song"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"       
-        app:layout_constraintTop_toBottomOf="@id/title_songs"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginTop="8dp"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title_songs"
+        tools:listitem="@layout/item_song" />
+
     <LinearLayout
         android:id="@+id/bottom_music_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@color/bg_color"
+        android:elevation="8dp"
         android:orientation="horizontal"
         android:padding="@dimen/margin_middle"
         android:visibility="gone"
-        android:background="@color/bg_color"
-        android:elevation="8dp"
-        >
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/img_artist"
@@ -173,21 +187,19 @@
             android:layout_height="48dp"
             android:layout_marginHorizontal="8dp"
             android:layout_marginVertical="4dp"
-            app:shapeAppearanceOverlay="@style/ShapeImageView"
-            android:src="@drawable/artist"
             android:scaleType="centerCrop"
-            />
+            android:src="@drawable/artist"
+            app:shapeAppearanceOverlay="@style/ShapeImageView" />
 
         <TextView
             android:id="@+id/tv_singer_song"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_gravity="center_vertical"
-            tools:text="Star boy - The Weekend, Daft Pu..."
-            android:textColor="@color/white"
+            android:layout_weight="1"
             android:ellipsize="marquee"
-            />
+            android:textColor="@color/white"
+            tools:text="Star boy - The Weekend, Daft Pu..." />
 
         <ImageView
             android:id="@+id/icon_play_or_pause"
