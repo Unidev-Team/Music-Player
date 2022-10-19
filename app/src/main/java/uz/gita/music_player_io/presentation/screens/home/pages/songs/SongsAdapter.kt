@@ -40,7 +40,7 @@ class SongsAdapter : ListAdapter<MusicData, SongsAdapter.SongsViewHolder>(SongsA
                 text = getItem(absoluteAdapterPosition).artistName
             }
 
-            binding.tvSongDuration.text = getItem(absoluteAdapterPosition).duration.longToMin().toString()
+            binding.tvSongDuration.text = getItem(absoluteAdapterPosition).duration.longToMin()
 
             Glide
                 .with(binding.root.context)
