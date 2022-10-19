@@ -27,7 +27,7 @@ class HomeViewModelImpl @Inject constructor(
     override fun getAllMusics(): Flow<List<PlayListWithMusics>> =
         playlistUseCase.getMusicsWithPlaylist(playListId)
 
-    override fun getAllMusicsPlaylist(): Flow<List<MusicData>>  = musicsUseCase.getAllMusics()
+    override fun getAllMusicsPlaylist(): Flow<List<MusicData>> = musicsUseCase.getAllMusics()
 
     override fun refreshAllMusics() {
         viewModelScope.launch {
@@ -41,7 +41,8 @@ class HomeViewModelImpl @Inject constructor(
             val newList = playlist.musicList.toMutableList()
             if (playListWithMusics.isInPlaylist) {
                 newList.removeIf {
-                    it.title == playListWithMusics.musicData.title
+                    it.title == playListWithMusics.musicData.title &&
+                    it.artistName == playListWithMusics.musicData.artistName
                 }
             } else {
                 newList.add(playListWithMusics.musicData)

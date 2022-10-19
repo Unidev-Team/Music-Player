@@ -18,6 +18,7 @@ object MusicPlaying {
 
     var listMusics: List<MusicData> = emptyList()
 
+
     fun clickMusic(pos: Int) {
 
         positionMusic = if (pos == listMusics.size) {
