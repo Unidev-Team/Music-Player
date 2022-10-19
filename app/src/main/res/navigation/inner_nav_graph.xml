@@ -19,10 +19,26 @@
         android:id="@+id/playlistScreen"
         android:name="uz.gita.music_player_io.presentation.screens.playlist.PlaylistScreen"
         android:label="PlaylistScreen"
-        tools:layout="@layout/screen_playlist" />
+        tools:layout="@layout/screen_playlist" >
+        <action
+            android:id="@+id/action_playlistScreen_to_playlistDetailScreen"
+            app:destination="@id/playlistDetailScreen" />
+    </fragment>
     <fragment
         android:id="@+id/favouriteScreen"
         android:name="uz.gita.music_player_io.presentation.screens.favourite.FavouriteScreen"
         android:label="FavouriteScreen"
         tools:layout="@layout/screen_favourite" />
+
+    <fragment
+        android:id="@+id/playlistDetailScreen"
+        android:name="uz.gita.music_player_io.presentation.screens.playlist.detail.PlaylistDetailScreen"
+        android:label="PlaylistDetailScreen"
+        tools:layout="@layout/screen_playlist_detail"
+        >
+        <argument
+            android:name="playlist_data"
+            app:argType="uz.gita.music_player_io.data.model.PlaylistData" />
+    </fragment>
+
 </navigation>

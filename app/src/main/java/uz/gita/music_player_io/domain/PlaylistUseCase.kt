@@ -9,4 +9,6 @@ interface PlaylistUseCase {
 
     fun getAllPlaylist(): Flow<List<PlaylistData>>
 
+    fun getPlaylistMusic(id: Int): Flow<PlaylistData>
+
 }

@@ -1,8 +1,10 @@
 package uz.gita.music_player_io.data.model
 
+import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
+import kotlinx.parcelize.Parcelize
 import uz.gita.music_player_io.utils.MusicListTypeConverter
 
 /**
@@ -10,11 +12,12 @@ import uz.gita.music_player_io.utils.MusicListTypeConverter
  */
 
 @Entity
+@Parcelize
 data class PlaylistData(
     @PrimaryKey(autoGenerate = true)
-    val id: Long,
+    val id: Int,
     val name: String = "",
     val musicCount: Long = 0L,
     @TypeConverters(MusicListTypeConverter::class)
     var musicList: List<MusicData> = emptyList()
-)
+): Parcelable

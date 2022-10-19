@@ -5,6 +5,7 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
@@ -41,5 +42,9 @@ class PlaylistScreen : Fragment(R.layout.screen_playlist) {
         viewModel.getAllPlaylist().onEach {
             adapter.submitList(it)
         }.launchIn(lifecycleScope)
+
+        adapter.setItemClickListener {
+            findNavController().navigate(PlaylistScreenDirections.actionPlaylistScreenToPlaylistDetailScreen(it))
+        }
     }
 }

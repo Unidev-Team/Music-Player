@@ -46,4 +46,7 @@ interface MusicDao {
     @Query("SELECT * FROM playlistdata")
     fun getAllPlaylist(): Flow<List<PlaylistData>>
 
+    @Query("SELECT * FROM playlistdata WHERE id=:id")
+    fun getPlaylistById(id: Int): Flow<PlaylistData>
+
 }

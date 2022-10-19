@@ -18,14 +18,14 @@ import uz.gita.music_player_io.databinding.ItemSongBinding
 
 class PlaylistAdapter : ListAdapter<PlaylistData, PlaylistAdapter.PlaylistViewHolder>(PlaylistAdapterComparator) {
 
-    private var itemItemClick: ((Int) -> Unit)? = null
+    private var itemItemClick: ((PlaylistData) -> Unit)? = null
 
     inner class PlaylistViewHolder(private val binding: ItemPlaylistBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         init {
             binding.root.setOnClickListener {
-                itemItemClick?.invoke(absoluteAdapterPosition)
+                itemItemClick?.invoke(getItem(absoluteAdapterPosition))
             }
         }
 
@@ -55,7 +55,7 @@ class PlaylistAdapter : ListAdapter<PlaylistData, PlaylistAdapter.PlaylistViewHo
         holder.bind()
     }
 
-    fun setItemClickListener(block: (Int) -> Unit) {
+    fun setItemClickListener(block: (PlaylistData) -> Unit) {
         itemItemClick = block
     }
 }

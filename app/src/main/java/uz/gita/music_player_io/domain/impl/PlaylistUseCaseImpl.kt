@@ -16,4 +16,5 @@ class PlaylistUseCaseImpl @Inject constructor(
 
     override fun getAllPlaylist(): Flow<List<PlaylistData>> = musicDao.getAllPlaylist()
 
+    override fun getPlaylistMusic(id: Int): Flow<PlaylistData> = musicDao.getPlaylistById(id)
 }
