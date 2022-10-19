@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:layout_height="wrap_content">
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/iv_artist"
@@ -11,13 +11,12 @@
         android:layout_height="60dp"
         android:layout_marginVertical="8dp"
         android:layout_marginStart="16dp"
+        android:scaleType="centerCrop"
         android:src="@drawable/artist"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:shapeAppearanceOverlay="@style/ShapeImageDetail"
-        android:scaleType="centerCrop"
-        />
+        app:shapeAppearanceOverlay="@style/ShapeImageDetail" />
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/music_details"
@@ -35,12 +34,13 @@
             android:id="@+id/tv_song_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="Star boy"
             android:ellipsize="end"
+            android:maxWidth="200dp"
+            android:singleLine="true"
             android:textColor="@color/white"
             android:textSize="18sp"
-            android:maxWidth="200dp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            tools:text="Star boy" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -51,10 +51,11 @@
                 android:id="@+id/tv_song_description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:text="The Weekend, Daf..."
-                android:maxWidth="130dp"
                 android:ellipsize="end"
-                android:textColor="@color/white" />
+                android:maxWidth="130dp"
+                android:singleLine="true"
+                android:textColor="@color/white"
+                tools:text="The Weekend, Daf..." />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -65,12 +66,13 @@
                 android:textStyle="bold" />
 
             <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_song_duration"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:text="03:50 mins"
+                android:singleLine="true"
                 android:textColor="@color/white"
-                android:id="@+id/tv_song_duration"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                tools:text="03:50 mins" />
 
         </LinearLayout>
 
@@ -81,9 +83,9 @@
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:layout_gravity="center_vertical"
+        android:background="@drawable/bg_main_icon"
         android:padding="@dimen/margin_middle"
         android:src="@drawable/play"
-        android:background="@drawable/bg_main_icon"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/iv_menu"
         app:layout_constraintTop_toTopOf="parent" />

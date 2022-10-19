@@ -9,6 +9,7 @@ import com.bumptech.glide.Glide
 import uz.gita.music_player_io.R
 import uz.gita.music_player_io.data.model.MusicData
 import uz.gita.music_player_io.databinding.ItemSongBinding
+import uz.gita.music_player_io.utils.extensions.longToMin
 
 /**
  *  Created by Nurlibay Koshkinbaev on 08/10/2022 13:57
@@ -38,7 +39,8 @@ class SongsAdapter : ListAdapter<MusicData, SongsAdapter.SongsViewHolder>(SongsA
                 setSingleLine()
                 text = getItem(absoluteAdapterPosition).artistName
             }
-            binding.tvSongDuration.text = getItem(absoluteAdapterPosition).duration.toString()
+
+            binding.tvSongDuration.text = getItem(absoluteAdapterPosition).duration.longToMin().toString()
 
             Glide
                 .with(binding.root.context)
