@@ -4,10 +4,12 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import by.kirich1409.viewbindingdelegate.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import uz.gita.music_player_io.R
 import uz.gita.music_player_io.databinding.ScreenPlaylistDetailBinding
@@ -37,7 +39,7 @@ class PlaylistDetailScreen : Fragment(R.layout.screen_playlist_detail) {
 
         viewModel.playlistSongFlow.onEach {
             musicAdapter.submitList(it.musicList)
-        }
+        }.launchIn(viewLifecycleOwner.lifecycleScope)
         
         viewModel.getAllPlaylistSong(saveArgs.playlistData.id)
 

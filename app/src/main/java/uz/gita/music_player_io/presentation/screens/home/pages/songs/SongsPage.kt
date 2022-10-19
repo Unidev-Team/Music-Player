@@ -1,5 +1,6 @@
 package uz.gita.music_player_io.presentation.screens.home.pages.songs
 
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -36,7 +37,7 @@ class SongsPage : Fragment(R.layout.page_songs) {
         super.onViewCreated(view, savedInstanceState)
         binding.rvSongs.adapter = adapter
         viewModel.getAllMusics()
-        viewModel.getAllMusics().onEach {
+        viewModel.getAllMusicsPlaylist().onEach {
             MusicPlaying.setMusicList(it)
             adapter.submitList(it)
         }.launchIn(lifecycleScope)

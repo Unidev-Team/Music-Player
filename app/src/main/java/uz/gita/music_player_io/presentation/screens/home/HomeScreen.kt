@@ -13,7 +13,7 @@ import uz.gita.music_player_io.presentation.screens.home.pages.HomeViewPagerAdap
 import uz.gita.music_player_io.presentation.viewmodels.HomeViewModel
 import uz.gita.music_player_io.presentation.viewmodels.impl.HomeViewModelImpl
 
-/**
+/*
  *  Created by Nurlibay Koshkinbaev on 08/10/2022 01:33
  */
 

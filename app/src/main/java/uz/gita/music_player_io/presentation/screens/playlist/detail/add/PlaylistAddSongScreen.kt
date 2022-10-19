@@ -5,6 +5,7 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.navArgs
 import by.kirich1409.viewbindingdelegate.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
@@ -21,14 +22,21 @@ class PlaylistAddSongScreen : Fragment(R.layout.screen_playlist_add_song) {
     private val binding: ScreenPlaylistAddSongBinding by viewBinding()
     private val adapter by lazy(LazyThreadSafetyMode.NONE) { PlaylistAddSongAdapter() }
 
+    private val args: PlaylistAddSongScreenArgs by navArgs()
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+
+        viewModel.setPlaylistId(args.playlistData.id)
+
         binding.apply {
             rvSongsList.adapter = adapter
-        }
 
+            adapter.setIconClickListener {
+                viewModel.changeMusic(it)
+            }
+        }
         viewModel.getAllMusics().onEach {
             adapter.submitList(it)
-        }.launchIn(lifecycleScope)
+        }.launchIn(viewLifecycleOwner.lifecycleScope)
     }
 }

@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import uz.gita.music_player_io.R
-import uz.gita.music_player_io.data.model.MusicData
+import uz.gita.music_player_io.data.model.data.PlayListWithMusics
 import uz.gita.music_player_io.databinding.ItemSelectableSongBinding
 
 /**
@@ -15,29 +15,39 @@ import uz.gita.music_player_io.databinding.ItemSelectableSongBinding
  */
 
 class PlaylistAddSongAdapter :
-    ListAdapter<MusicData, PlaylistAddSongAdapter.PlaylistViewHolder>(PlaylistAddSongAdapterComparator) {
+    ListAdapter<PlayListWithMusics, PlaylistAddSongAdapter.PlaylistViewHolder>(
+        PlaylistAddSongAdapterComparator
+    ) {
 
-    private var itemItemClick: ((MusicData) -> Unit)? = null
+    private var itemItemClick: ((PlayListWithMusics) -> Unit)? = null
 
     inner class PlaylistViewHolder(private val binding: ItemSelectableSongBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         init {
-            binding.root.setOnClickListener {
+            binding.btnAdd.setOnClickListener {
                 itemItemClick?.invoke(getItem(absoluteAdapterPosition))
             }
         }
 
         fun bind() {
             binding.apply {
-                tvSongName.text = getItem(absoluteAdapterPosition).title
-                tvArtistName.text = getItem(absoluteAdapterPosition).artistName
+                val data = getItem(absoluteAdapterPosition)
+                val musicData = data.musicData
+                tvSongName.text = musicData.title
+                tvArtistName.text = musicData.artistName
 
                 Glide
                     .with(root.context)
-                    .load(getItem(absoluteAdapterPosition).image)
+                    .load(musicData.image)
                     .placeholder(R.drawable.artist)
                     .into(ivArtist)
+
+                if (data.isInPlaylist) {
+                    binding.btnAdd.setImageResource(R.drawable.ic_check)
+                } else {
+                    binding.btnAdd.setImageResource(R.drawable.ic_add)
+                }
             }
         }
     }
@@ -55,19 +65,24 @@ class PlaylistAddSongAdapter :
         holder.bind()
     }
 
-    fun setIconClickListener(block: (MusicData) -> Unit) {
+    fun setIconClickListener(block: (PlayListWithMusics) -> Unit) {
         itemItemClick = block
     }
 }
 
-object PlaylistAddSongAdapterComparator : DiffUtil.ItemCallback<MusicData>() {
+object PlaylistAddSongAdapterComparator : DiffUtil.ItemCallback<PlayListWithMusics>() {
+    override fun areItemsTheSame(
+        oldItem: PlayListWithMusics,
+        newItem: PlayListWithMusics
+    ): Boolean = oldItem.musicData.id == newItem.musicData.id
 
-    override fun areItemsTheSame(oldItem: MusicData, newItem: MusicData): Boolean {
-        return oldItem.id == newItem.id
-    }
+    override fun areContentsTheSame(
+        oldItem: PlayListWithMusics,
+        newItem: PlayListWithMusics
+    ): Boolean =
+        oldItem.isInPlaylist == newItem.isInPlaylist &&
+                oldItem.musicData.title == newItem.musicData.title&&
+                oldItem.musicData.artistName==newItem.musicData.artistName
 
-    override fun areContentsTheSame(oldItem: MusicData, newItem: MusicData): Boolean {
-        return oldItem.id == newItem.id && oldItem.title == newItem.title && oldItem.artistName == newItem.artistName && oldItem.album == newItem.album
 
-    }
 }

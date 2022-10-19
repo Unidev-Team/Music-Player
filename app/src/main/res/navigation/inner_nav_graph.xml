@@ -45,6 +45,7 @@
     </fragment>
     <fragment
         android:id="@+id/playlistAddSongScreen"
+        tools:layout="@layout/screen_playlist_add_song"
         android:name="uz.gita.music_player_io.presentation.screens.playlist.detail.add.PlaylistAddSongScreen"
         android:label="PlaylistAddSongScreen" >
         <argument

@@ -1,12 +1,9 @@
 package uz.gita.music_player_io.domain.impl
 
 import android.content.Context
-import android.database.Cursor
 import android.net.Uri
 import android.provider.MediaStore
-import android.util.Log
 import dagger.hilt.android.qualifiers.ApplicationContext
-import timber.log.Timber
 import uz.gita.music_player_io.data.model.MusicData
 import uz.gita.music_player_io.domain.GetAllMusicsUseCase
 import java.io.File

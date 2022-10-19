@@ -6,26 +6,14 @@
         <entry key="..\:/Users/Jamshid/AndroidStudioProjects/MusicPlayerPro/app/src/main/res/drawable/bg_main_icon.xml" value="0.119" />
         <entry key="..\:/Users/Jamshid/AndroidStudioProjects/MusicPlayerPro/app/src/main/res/drawable/ic_music.xml" value="0.119" />
         <entry key="..\:/Users/Jamshid/AndroidStudioProjects/MusicPlayerPro/app/src/main/res/layout/activity_main.xml" value="0.2484375" />
+        <entry key="..\:/Users/Jamshid/AndroidStudioProjects/MusicPlayerPro/app/src/main/res/layout/item_selectable_song.xml" value="0.2039333048311244" />
+        <entry key="..\:/Users/Jamshid/AndroidStudioProjects/MusicPlayerPro/app/src/main/res/layout/item_song.xml" value="0.2013507809202195" />
         <entry key="..\:/Users/Jamshid/AndroidStudioProjects/MusicPlayerPro/app/src/main/res/layout/screen_intro.xml" value="0.2039333048311244" />
+        <entry key="..\:/Users/Jamshid/AndroidStudioProjects/MusicPlayerPro/app/src/main/res/layout/screen_playlist_add_song.xml" value="0.2039333048311244" />
         <entry key="..\:/Users/Jamshid/AndroidStudioProjects/MusicPlayerPro/app/src/main/res/layout/screen_splash.xml" value="0.152" />
-        <entry key="..\:/Users/Rasulbek/AndroidStudioProjects/Music-Player/app/src/main/res/drawable/bg_btn_artist.xml" value="0.157" />
-        <entry key="..\:/Users/Rasulbek/AndroidStudioProjects/Music-Player/app/src/main/res/drawable/bg_btn_shuffle.xml" value="0.157" />
-        <entry key="..\:/Users/Rasulbek/AndroidStudioProjects/Music-Player/app/src/main/res/drawable/bg_seek_bar.xml" value="0.157" />
         <entry key="..\:/Users/Rasulbek/AndroidStudioProjects/Music-Player/app/src/main/res/layout/activity_main.xml" value="0.22826086956521738" />
-        <entry key="..\:/Users/Rasulbek/AndroidStudioProjects/Music-Player/app/src/main/res/layout/item_artist.xml" value="0.264" />
         <entry key="..\:/Users/Rasulbek/AndroidStudioProjects/Music-Player/app/src/main/res/layout/item_intro_viewpager.xml" value="0.22826086956521738" />
-        <entry key="..\:/Users/Rasulbek/AndroidStudioProjects/Music-Player/app/src/main/res/layout/item_song.xml" value="0.22826086956521738" />
-        <entry key="..\:/Users/Rasulbek/AndroidStudioProjects/Music-Player/app/src/main/res/layout/page_albums.xml" value="0.20863616930312098" />
-        <entry key="..\:/Users/Rasulbek/AndroidStudioProjects/Music-Player/app/src/main/res/layout/page_artists.xml" value="0.20863616930312098" />
-        <entry key="..\:/Users/Rasulbek/AndroidStudioProjects/Music-Player/app/src/main/res/layout/page_songs.xml" value="0.20863616930312098" />
-        <entry key="..\:/Users/Rasulbek/AndroidStudioProjects/Music-Player/app/src/main/res/layout/screen_artist_detial.xml" value="0.264" />
-        <entry key="..\:/Users/Rasulbek/AndroidStudioProjects/Music-Player/app/src/main/res/layout/screen_home.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/Rasulbek/AndroidStudioProjects/Music-Player/app/src/main/res/layout/screen_intro.xml" value="0.22826086956521738" />
-        <entry key="..\:/Users/Rasulbek/AndroidStudioProjects/Music-Player/app/src/main/res/layout/screen_main.xml" value="0.22826086956521738" />
-        <entry key="..\:/Users/Rasulbek/AndroidStudioProjects/Music-Player/app/src/main/res/layout/screen_music_detail.xml" value="0.22826086956521738" />
-        <entry key="..\:/Users/Rasulbek/AndroidStudioProjects/Music-Player/app/src/main/res/layout/screen_playlist.xml" value="0.22826086956521738" />
-        <entry key="..\:/Users/Rasulbek/AndroidStudioProjects/Music-Player/app/src/main/res/layout/screen_playlist_add_song.xml" value="0.1721311475409836" />
-        <entry key="..\:/Users/Rasulbek/AndroidStudioProjects/Music-Player/app/src/main/res/layout/screen_playlist_detail.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/User/StudioProjects/Music-Player/app/src/main/res/drawable-v24/ic_next_detail.xml" value="0.1855" />
         <entry key="..\:/Users/User/StudioProjects/Music-Player/app/src/main/res/drawable/bg_main_icon.xml" value="0.2665" />
         <entry key="..\:/Users/User/StudioProjects/Music-Player/app/src/main/res/drawable/bg_seek_bar.xml" value="0.1855" />
