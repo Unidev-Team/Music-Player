@@ -176,15 +176,15 @@
             android:layout_centerVertical="true" />
 
         <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/btn_add"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:src="@drawable/ic_add"
-            android:padding="4dp"
-            android:background="@drawable/bg_btn_add"
             android:layout_marginHorizontal="@dimen/margin_standard"
-            />
+            android:background="@drawable/bg_btn_add"
+            android:padding="4dp"
+            android:src="@drawable/ic_add" />
 
     </RelativeLayout>
 
