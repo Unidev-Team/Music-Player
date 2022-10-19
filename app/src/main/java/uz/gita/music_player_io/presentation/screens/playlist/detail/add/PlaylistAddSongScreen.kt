@@ -35,6 +35,7 @@ class PlaylistAddSongScreen : Fragment(R.layout.screen_playlist_add_song) {
                 viewModel.changeMusic(it)
             }
         }
+
         viewModel.getAllMusics().onEach {
             adapter.submitList(it)
         }.launchIn(viewLifecycleOwner.lifecycleScope)

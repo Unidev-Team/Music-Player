@@ -23,7 +23,6 @@ class HomeViewModelImpl @Inject constructor(
 
     private var playListId: Int = 0
 
-
     override fun getAllMusics(): Flow<List<PlayListWithMusics>> =
         playlistUseCase.getMusicsWithPlaylist(playListId)
 
@@ -49,7 +48,6 @@ class HomeViewModelImpl @Inject constructor(
             }
             musicDao.updatePlayList(playlist.copy(musicList = newList))
         }
-
     }
 
     override fun setPlaylistId(id: Int) {

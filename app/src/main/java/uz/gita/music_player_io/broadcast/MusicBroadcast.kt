@@ -13,17 +13,17 @@ class MusicBroadcast : BroadcastReceiver() {
 
         when (intent?.action) {
             State.PLAY.name -> {
-                if (MusicPlaying.mediaPlayer?.isPlaying!!){
+                if (MusicPlaying.mediaPlayer?.isPlaying!!) {
                     MusicPlaying.pauseMusic()
-                }else{
+                } else {
                     MusicPlaying.startMusic()
                 }
             }
             State.NEXT.name -> {
-                MusicPlaying.clickMusic(MusicPlaying.positionMusic+1)
+                MusicPlaying.clickMusic(MusicPlaying.positionMusic + 1)
             }
             State.PREVIOUS.name -> {
-                MusicPlaying.clickMusic(MusicPlaying.positionMusic-1)
+                MusicPlaying.clickMusic(MusicPlaying.positionMusic - 1)
             }
         }
 

@@ -1,6 +1,7 @@
 package uz.gita.music_player_io.presentation.screens.home.pages.songs
 
 import android.content.ComponentName
+import android.content.Context
 import android.content.Intent
 import android.content.ServiceConnection
 import android.os.Bundle
@@ -28,11 +29,19 @@ import uz.gita.music_player_io.utils.MusicPlaying
  */
 
 @AndroidEntryPoint
-class SongsPage : Fragment(R.layout.page_songs),ServiceConnection {
+class SongsPage : Fragment(R.layout.page_songs), ServiceConnection {
 
     private val binding: PageSongsBinding by viewBinding()
     private val viewModel: HomeViewModel by viewModels<HomeViewModelImpl>()
     private val adapter by lazy { SongsAdapter() }
+    private var musicService: MusicService? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val intent = Intent(requireContext(), MusicService::class.java)
+        requireActivity().bindService(intent, this, Context.BIND_AUTO_CREATE)
+        requireActivity().startService(intent)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -54,10 +63,10 @@ class SongsPage : Fragment(R.layout.page_songs),ServiceConnection {
 
     override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
         val binder = service as MusicService.MyBinder
-
+        musicService = binder.currentService()
     }
 
     override fun onServiceDisconnected(name: ComponentName?) {
-
+        musicService = null
     }
 }

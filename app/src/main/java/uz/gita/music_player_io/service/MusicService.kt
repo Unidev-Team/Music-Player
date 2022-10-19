@@ -15,6 +15,7 @@ import androidx.core.app.NotificationCompat
 import uz.gita.music_player_io.R
 import uz.gita.music_player_io.broadcast.MusicBroadcast
 import uz.gita.music_player_io.data.model.MusicData
+import uz.gita.music_player_io.utils.MusicPlaying
 import uz.gita.music_player_io.utils.getImageArt
 
 // Created by Jamshid Isoqov an 10/19/2022
@@ -67,7 +68,7 @@ class MusicService : Service() {
             baseContext,
             0,
             prevIntent,
-            PendingIntent.FLAG_IMMUTABLE
+            PendingIntent.FLAG_UPDATE_CURRENT
         )
 
         val playIntent = Intent(baseContext, MusicBroadcast::class.java).setAction(State.PLAY.name)
@@ -75,7 +76,7 @@ class MusicService : Service() {
             baseContext,
             0,
             playIntent,
-            PendingIntent.FLAG_IMMUTABLE
+            PendingIntent.FLAG_UPDATE_CURRENT
         )
 
         val nextIntent = Intent(baseContext, MusicBroadcast::class.java).setAction(State.NEXT.name)
@@ -83,12 +84,11 @@ class MusicService : Service() {
             baseContext,
             0,
             nextIntent,
-            PendingIntent.FLAG_IMMUTABLE
+            PendingIntent.FLAG_UPDATE_CURRENT
         )
 
-
         val notification = NotificationCompat.Builder(baseContext, CHANNEL_ID)
-            .setContentTitle(music.title)
+            .setContentTitle(MusicPlaying.listMusics[MusicPlaying.positionMusic].title)
             .setContentText(music.artistName)
             .setSmallIcon(R.drawable.ic_music)
             //.setLargeIcon(image)
@@ -103,6 +103,7 @@ class MusicService : Service() {
             .addAction(R.drawable.play, "Play", playPendingIntent)
             .addAction(R.drawable.ic_next, "Next", nextPendingIntent)
             .build()
+
         startForeground(12, notification)
     }
 
