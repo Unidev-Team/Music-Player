@@ -39,6 +39,17 @@
         <argument
             android:name="playlist_data"
             app:argType="uz.gita.music_player_io.data.model.PlaylistData" />
+        <action
+            android:id="@+id/action_playlistDetailScreen_to_playlistAddSongScreen"
+            app:destination="@id/playlistAddSongScreen" />
+    </fragment>
+    <fragment
+        android:id="@+id/playlistAddSongScreen"
+        android:name="uz.gita.music_player_io.presentation.screens.playlist.detail.add.PlaylistAddSongScreen"
+        android:label="PlaylistAddSongScreen" >
+        <argument
+            android:name="playlist_data"
+            app:argType="uz.gita.music_player_io.data.model.PlaylistData" />
     </fragment>
 
 </navigation>
