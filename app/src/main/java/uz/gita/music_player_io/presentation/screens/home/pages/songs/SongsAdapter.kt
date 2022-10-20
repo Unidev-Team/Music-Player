@@ -45,6 +45,7 @@ class SongsAdapter : ListAdapter<MusicData, SongsAdapter.SongsViewHolder>(SongsA
             Glide
                 .with(binding.root.context)
                 .load(getItem(absoluteAdapterPosition).image)
+                .placeholder(R.drawable.artist)
                 .into(binding.ivArtist)
         }
     }

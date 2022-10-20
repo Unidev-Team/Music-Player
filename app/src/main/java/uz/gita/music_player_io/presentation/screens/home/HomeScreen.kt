@@ -3,15 +3,12 @@ package uz.gita.music_player_io.presentation.screens.home
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 import uz.gita.music_player_io.R
 import uz.gita.music_player_io.databinding.ScreenHomeBinding
 import uz.gita.music_player_io.presentation.screens.home.pages.HomeViewPagerAdapter
-import uz.gita.music_player_io.presentation.viewmodels.HomeViewModel
-import uz.gita.music_player_io.presentation.viewmodels.impl.HomeViewModelImpl
 
 /*
  *  Created by Nurlibay Koshkinbaev on 08/10/2022 01:33

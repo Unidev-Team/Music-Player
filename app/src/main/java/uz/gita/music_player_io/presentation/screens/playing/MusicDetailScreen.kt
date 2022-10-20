@@ -12,7 +12,6 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
-import ru.ldralighieri.corbind.widget.SeekBarProgressChangeEvent
 import uz.gita.music_player_io.R
 import uz.gita.music_player_io.databinding.ScreenMusicDetailBinding
 import uz.gita.music_player_io.presentation.viewmodels.MusicDetailViewModel
@@ -46,8 +45,6 @@ class MusicDetailScreen : Fragment(R.layout.screen_music_detail) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        changeUI(MusicPlaying.positionMusic)
-
         isPlaying = true
         binding.iconStopOrPlay.setImageResource(R.drawable.ic_pause)
 
@@ -69,6 +66,10 @@ class MusicDetailScreen : Fragment(R.layout.screen_music_detail) {
             }
         }
 
+        MusicPlaying.mutableMusicPosition.observe(viewLifecycleOwner){
+            changeUI(it)
+        }
+
         MusicPlaying.playingObserver.observe(viewLifecycleOwner) {
             if (it) {
                 binding.iconStopOrPlay.setImageResource(R.drawable.ic_pause)
@@ -85,7 +86,6 @@ class MusicDetailScreen : Fragment(R.layout.screen_music_detail) {
     private val clickPreviousObserver = Observer<Unit> {
         if (MusicPlaying.positionMusic > 0) {
             MusicPlaying.clickMusic(MusicPlaying.positionMusic - 1)
-            changeUI(MusicPlaying.positionMusic)
             binding.iconStopOrPlay.setImageResource(R.drawable.ic_pause)
         } else {
             Toast.makeText(requireContext(), "First Song!", Toast.LENGTH_SHORT).show()
@@ -94,7 +94,6 @@ class MusicDetailScreen : Fragment(R.layout.screen_music_detail) {
 
     private val clickNextSongObserver = Observer<Unit> {
         MusicPlaying.clickMusic(MusicPlaying.positionMusic + 1)
-        changeUI(MusicPlaying.positionMusic)
         binding.iconStopOrPlay.setImageResource(R.drawable.ic_pause)
     }
 
@@ -108,15 +107,16 @@ class MusicDetailScreen : Fragment(R.layout.screen_music_detail) {
         }
         isPlaying = !isPlaying
     }
-
+    
     private fun changeUI(pos: Int) {
         binding.apply {
-            tvSinger.text = MusicPlaying.listMusics[pos].artistName
             tvSong.text = MusicPlaying.listMusics[pos].title
+            tvSinger.text = MusicPlaying.listMusics[pos].artistName
 
             Glide
                 .with(requireContext())
                 .load(MusicPlaying.listMusics[pos].image)
+                .placeholder(R.drawable.artist)
                 .into(binding.imgAlbum)
 
             musicSeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {

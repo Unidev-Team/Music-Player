@@ -3,10 +3,8 @@ package uz.gita.music_player_io.utils
 import android.content.Intent
 import android.media.MediaPlayer
 import android.net.Uri
-import android.util.Log
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.MutableLiveData
-import timber.log.Timber
 import uz.gita.music_player_io.App
 import uz.gita.music_player_io.R
 import uz.gita.music_player_io.data.model.MusicData
@@ -20,6 +18,8 @@ object MusicPlaying {
 
     var positionMusic = -1
 
+    var mutableMusicPosition = MutableLiveData<Int>()
+
     var listMusics: List<MusicData> = emptyList()
 
     private var stateMusic: Int = 0
@@ -30,12 +30,14 @@ object MusicPlaying {
 
     fun clickMusic(pos: Int) {
 
-        if (pos==0) return
+        if (pos == 0) return
         positionMusic = if (pos == listMusics.size) {
             0
         } else {
             pos
         }
+
+        mutableMusicPosition.value = positionMusic
 
         musicLiveData.value = listMusics[positionMusic]
 
