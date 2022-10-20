@@ -39,10 +39,10 @@ class MainScreen : Fragment(R.layout.screen_main) {
         binding.iconPlayOrPause.setOnClickListener {
             if (isPlaying) {
                 MusicPlaying.pauseMusic()
-                binding.iconPlayOrPause.setImageResource(R.drawable.ic_pause)
+                binding.iconPlayOrPause.setImageResource(R.drawable.play)
             } else {
                 MusicPlaying.startMusic()
-                binding.iconPlayOrPause.setImageResource(R.drawable.play)
+                binding.iconPlayOrPause.setImageResource(R.drawable.ic_pause)
             }
             isPlaying = !isPlaying
         }

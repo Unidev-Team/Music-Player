@@ -8,6 +8,7 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.MutableLiveData
 import timber.log.Timber
 import uz.gita.music_player_io.App
+import uz.gita.music_player_io.R
 import uz.gita.music_player_io.data.model.MusicData
 import uz.gita.music_player_io.service.MusicService
 
@@ -21,6 +22,9 @@ object MusicPlaying {
 
     var listMusics: List<MusicData> = emptyList()
 
+    private var stateMusic: Int = 0
+
+    private var intent: Intent? = null
 
     fun clickMusic(pos: Int) {
 
@@ -36,8 +40,7 @@ object MusicPlaying {
             mediaPlayer?.stop()
         }
 
-        val intent = Intent(App.context, MusicService::class.java)
-        ContextCompat.startForegroundService(App.context, intent)
+        intent = Intent(App.context, MusicService::class.java)
 
         mediaPlayer = MediaPlayer.create(App.context, Uri.parse(listMusics[positionMusic].path))
         startMusic()
@@ -50,9 +53,15 @@ object MusicPlaying {
 
     fun startMusic() {
         mediaPlayer?.start()
+        stateMusic = R.drawable.ic_pause
+        intent?.putExtra("stateMusic", stateMusic)
+        ContextCompat.startForegroundService(App.context, intent!!)
     }
 
     fun pauseMusic() {
         mediaPlayer?.pause()
+        stateMusic = R.drawable.play
+        intent?.putExtra("stateMusic", stateMusic)
+        ContextCompat.startForegroundService(App.context, intent!!)
     }
 }

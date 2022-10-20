@@ -11,6 +11,7 @@ import android.os.Binder
 import android.os.Build
 import android.os.IBinder
 import android.support.v4.media.session.MediaSessionCompat
+import android.util.Log
 import androidx.core.app.NotificationCompat
 import uz.gita.music_player_io.R
 import uz.gita.music_player_io.broadcast.MusicBroadcast
@@ -21,8 +22,10 @@ import kotlin.math.absoluteValue
 
 // Created by Jamshid Isoqov an 10/19/2022
 class MusicService : Service() {
+
     private lateinit var mediaSession: MediaSessionCompat
 
+    private var stateMus = 0
 
     override fun onBind(intent: Intent?): IBinder? {
         mediaSession = MediaSessionCompat(baseContext, "My Music")
@@ -42,22 +45,14 @@ class MusicService : Service() {
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        createNotification()
+        stateMus = intent?.getIntExtra("stateMusic", 0)!!
+        Log.d("PPP", stateMus.toString())
+        showNotification(stateMus)
 
         return START_REDELIVER_INTENT
     }
 
-    @SuppressLint("UnspecifiedImmutableFlag")
     private fun createNotification() {
-        val music = MusicPlaying.musicLiveData.value
-
-        /*val imgArt = getImageArt(music.image)
-        val image = if (imgArt != null) {
-            BitmapFactory.decodeByteArray(imgArt, 0, imgArt.size)
-        } else {
-            BitmapFactory.decodeResource(resources, R.drawable.ic_music)
-        }*/
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val notificationChannel = NotificationChannel(
                 CHANNEL_ID,
@@ -68,6 +63,20 @@ class MusicService : Service() {
             val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
             notificationManager.createNotificationChannel(notificationChannel)
         }
+    }
+
+    @SuppressLint("UnspecifiedImmutableFlag")
+    private fun showNotification(state: Int) {
+        val music = MusicPlaying.musicLiveData.value
+
+        Log.d("TTT", state.toString())
+
+        /*val imgArt = getImageArt(music.image)
+        val image = if (imgArt != null) {
+            BitmapFactory.decodeByteArray(imgArt, 0, imgArt.size)
+        } else {
+            BitmapFactory.decodeResource(resources, R.drawable.ic_music)
+        }*/
 
         val prevIntent =
             Intent(baseContext, MusicBroadcast::class.java).setAction(State.PREVIOUS.name)
@@ -99,15 +108,15 @@ class MusicService : Service() {
             .setContentText(music?.artistName)
             .setSmallIcon(R.drawable.ic_music)
             //.setLargeIcon(image)
-            /*.setStyle(
+            .setStyle(
                 androidx.media.app.NotificationCompat.MediaStyle()
                     .setMediaSession(mediaSession.sessionToken)
-            )*/
+            )
             .setPriority(NotificationCompat.PRIORITY_HIGH)
             .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
             .setOnlyAlertOnce(true)
             .addAction(R.drawable.ic_previous_left, "Previous", prevPendingIntent)
-            .addAction(R.drawable.play, "Play", playPendingIntent)
+            .addAction(state, "Play", playPendingIntent)
             .addAction(R.drawable.ic_next, "Next", nextPendingIntent)
             .build()
 
