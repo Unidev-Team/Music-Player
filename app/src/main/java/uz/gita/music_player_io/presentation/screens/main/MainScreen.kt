@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -56,6 +57,10 @@ class MainScreen : Fragment(R.layout.screen_main) {
             MusicPlaying.clickMusic(MusicPlaying.positionMusic + 1)
         }
 
+        binding.bottomMusicContainer.setOnClickListener {
+            findNavController().navigate(MainScreenDirections.actionMainScreenToMusicDetailScreen())
+        }
+
         MusicPlaying.musicLiveData.observe(viewLifecycleOwner, musicObserver)
     }
 
@@ -65,6 +70,7 @@ class MainScreen : Fragment(R.layout.screen_main) {
         if (!binding.bottomMusicContainer.isVisible) {
             binding.bottomMusicContainer.visibility = View.VISIBLE
         }
+
         binding.apply {
             imgAlbum.setImageURI(Uri.parse(it.image))
             tvSingerSong.text = "${it.artistName} - ${it.title}"

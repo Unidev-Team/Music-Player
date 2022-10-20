@@ -30,7 +30,6 @@ object MusicPlaying {
 
     fun clickMusic(pos: Int) {
 
-        if (pos == 0) return
         positionMusic = if (pos == listMusics.size) {
             0
         } else {

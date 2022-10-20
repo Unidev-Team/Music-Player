@@ -52,7 +52,6 @@ class SongsPage : Fragment(R.layout.page_songs), ServiceConnection {
 
         adapter.setItemClickListener {
             MusicPlaying.clickMusic(it)
-            findNavController().navigate(MainScreenDirections.actionMainScreenToMusicDetailScreen())
         }
     }
 

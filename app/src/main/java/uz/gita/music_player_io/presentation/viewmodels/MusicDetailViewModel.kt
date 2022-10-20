@@ -12,6 +12,7 @@ interface MusicDetailViewModel {
 
     val clickStopOrStart: LiveData<Unit>
 
+
     fun setClickBack()
 
     fun setClickPrevious()
@@ -19,5 +20,6 @@ interface MusicDetailViewModel {
     fun setClickNextSong()
 
     fun setClickStopOrStart()
+
 
 }

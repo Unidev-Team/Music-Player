@@ -1,12 +1,15 @@
 package uz.gita.music_player_io.presentation.screens.playing
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.View
 import android.widget.SeekBar
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.bumptech.glide.Glide
@@ -17,17 +20,20 @@ import uz.gita.music_player_io.databinding.ScreenMusicDetailBinding
 import uz.gita.music_player_io.presentation.viewmodels.MusicDetailViewModel
 import uz.gita.music_player_io.presentation.viewmodels.impl.MusicDetailViewModelImpl
 import uz.gita.music_player_io.utils.MusicPlaying
+import uz.gita.music_player_io.utils.extensions.formatDuration
 
 @AndroidEntryPoint
 class MusicDetailScreen : Fragment(R.layout.screen_music_detail) {
 
     private val viewModel: MusicDetailViewModel by viewModels<MusicDetailViewModelImpl>()
 
-    private val binding: ScreenMusicDetailBinding by viewBinding(ScreenMusicDetailBinding::bind)
+    private val binding: ScreenMusicDetailBinding by viewBinding()
 
     private var isPlaying = false
 
     private var job: Job? = null
+
+    private lateinit var runnable: Runnable
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -66,7 +72,7 @@ class MusicDetailScreen : Fragment(R.layout.screen_music_detail) {
             }
         }
 
-        MusicPlaying.mutableMusicPosition.observe(viewLifecycleOwner){
+        MusicPlaying.mutableMusicPosition.observe(viewLifecycleOwner) {
             changeUI(it)
         }
 
@@ -107,7 +113,7 @@ class MusicDetailScreen : Fragment(R.layout.screen_music_detail) {
         }
         isPlaying = !isPlaying
     }
-    
+
     private fun changeUI(pos: Int) {
         binding.apply {
             tvSong.text = MusicPlaying.listMusics[pos].title
@@ -116,14 +122,18 @@ class MusicDetailScreen : Fragment(R.layout.screen_music_detail) {
             Glide
                 .with(requireContext())
                 .load(MusicPlaying.listMusics[pos].image)
-                .placeholder(R.drawable.artist)
                 .into(binding.imgAlbum)
 
             musicSeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
-                override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                override fun onProgressChanged(
+                    seekBar: SeekBar?,
+                    progress: Int,
+                    fromUser: Boolean
+                ) {
                     val dur = MusicPlaying.mediaPlayer?.duration!! * progress / 100
-                    if(fromUser) MusicPlaying.mediaPlayer?.seekTo(dur)
+                    if (fromUser) MusicPlaying.mediaPlayer?.seekTo(dur)
                 }
+
                 override fun onStartTrackingTouch(p0: SeekBar?) = Unit
                 override fun onStopTrackingTouch(p0: SeekBar?) = Unit
             })
@@ -134,17 +144,26 @@ class MusicDetailScreen : Fragment(R.layout.screen_music_detail) {
     }
 
     private fun changeSeekBar() {
-        job = CoroutineScope(Dispatchers.Main).launch {
+        viewLifecycleOwner.lifecycleScope.launch(Dispatchers.Main) {
             while (true) {
                 delay(100)
-                val percent = MusicPlaying.mediaPlayer?.currentPosition!! * 100 / MusicPlaying.mediaPlayer!!.duration
+                val percent =
+                    MusicPlaying.mediaPlayer?.currentPosition!! * 100 / MusicPlaying.mediaPlayer!!.duration
                 binding.musicSeekBar.progress = percent
+
+                binding.tvStartSong.text =
+                    formatDuration(MusicPlaying.mediaPlayer!!.currentPosition.toLong())
             }
         }
+        binding.tvEndSong.text =
+            formatDuration(MusicPlaying.mediaPlayer!!.duration.toLong())
     }
 
-    override fun onStop() {
-        super.onStop()
-        job?.cancel()
+    private fun newChangeSeekBar() {
+        runnable = Runnable {
+            binding.musicSeekBar.progress = MusicPlaying.mediaPlayer!!.currentPosition
+            Handler(Looper.getMainLooper()).postDelayed(runnable, 200)
+        }
+        Handler(Looper.getMainLooper()).postDelayed(runnable, 0)
     }
 }
