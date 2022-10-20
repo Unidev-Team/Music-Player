@@ -26,7 +26,5 @@ class MusicBroadcast : BroadcastReceiver() {
                 MusicPlaying.clickMusic(MusicPlaying.positionMusic - 1)
             }
         }
-
     }
-
 }

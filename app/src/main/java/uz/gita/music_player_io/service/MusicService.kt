@@ -17,15 +17,21 @@ import uz.gita.music_player_io.broadcast.MusicBroadcast
 import uz.gita.music_player_io.data.model.MusicData
 import uz.gita.music_player_io.utils.MusicPlaying
 import uz.gita.music_player_io.utils.getImageArt
+import kotlin.math.absoluteValue
 
 // Created by Jamshid Isoqov an 10/19/2022
 class MusicService : Service() {
     private lateinit var mediaSession: MediaSessionCompat
-    private var broadcast: MusicBroadcast? = null
+
 
     override fun onBind(intent: Intent?): IBinder? {
         mediaSession = MediaSessionCompat(baseContext, "My Music")
         return MyBinder()
+    }
+
+    override fun onCreate() {
+        super.onCreate()
+        createNotification()
     }
 
 
@@ -36,13 +42,14 @@ class MusicService : Service() {
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        intent?.getParcelableExtra<MusicData>("data")?.let { createNotification(it) }
-        return super.onStartCommand(intent, flags, startId)
+        createNotification()
+
+        return START_REDELIVER_INTENT
     }
 
     @SuppressLint("UnspecifiedImmutableFlag")
-    private fun createNotification(musicData: MusicData) {
-        val music = musicData
+    private fun createNotification() {
+        val music = MusicPlaying.musicLiveData.value
 
         /*val imgArt = getImageArt(music.image)
         val image = if (imgArt != null) {
@@ -88,14 +95,14 @@ class MusicService : Service() {
         )
 
         val notification = NotificationCompat.Builder(baseContext, CHANNEL_ID)
-            .setContentTitle(MusicPlaying.listMusics[MusicPlaying.positionMusic].title)
-            .setContentText(music.artistName)
+            .setContentTitle(music?.title)
+            .setContentText(music?.artistName)
             .setSmallIcon(R.drawable.ic_music)
             //.setLargeIcon(image)
-            .setStyle(
+            /*.setStyle(
                 androidx.media.app.NotificationCompat.MediaStyle()
                     .setMediaSession(mediaSession.sessionToken)
-            )
+            )*/
             .setPriority(NotificationCompat.PRIORITY_HIGH)
             .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
             .setOnlyAlertOnce(true)

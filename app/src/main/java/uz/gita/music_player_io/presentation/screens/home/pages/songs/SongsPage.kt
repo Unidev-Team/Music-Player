@@ -55,7 +55,7 @@ class SongsPage : Fragment(R.layout.page_songs), ServiceConnection {
         adapter.setItemClickListener {
             MusicPlaying.clickMusic(it)
             val intent = Intent(requireContext(), MusicService::class.java)
-            intent.putExtra("data", MusicPlaying.listMusics[it])
+            /*intent.putExtra("data", MusicPlaying.listMusics[it])*/
             ContextCompat.startForegroundService(requireContext(), intent)
             findNavController().navigate(MainScreenDirections.actionMainScreenToMusicDetailScreen())
         }
