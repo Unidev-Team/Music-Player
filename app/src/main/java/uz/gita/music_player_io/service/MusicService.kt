@@ -6,6 +6,7 @@ import android.app.NotificationManager
 import android.app.PendingIntent
 import android.app.Service
 import android.content.Intent
+import android.content.IntentFilter
 import android.os.Binder
 import android.os.Build
 import android.os.IBinder
@@ -35,7 +36,14 @@ class MusicService : Service() {
         if (musicBroadcast==null){
             musicBroadcast = MusicBroadcast()
         }
-            createNotification()
+
+        registerReceiver(musicBroadcast, IntentFilter().apply {
+            addAction(State.NEXT.name)
+            addAction(State.PLAY.name)
+            addAction(State.PREVIOUS.name)
+        })
+
+        createNotification()
     }
 
 
@@ -67,7 +75,6 @@ class MusicService : Service() {
     @SuppressLint("UnspecifiedImmutableFlag")
     private fun showNotification(state: Int) {
         val music = MusicPlaying.musicLiveData.value
-
 
         /*val imgArt = getImageArt(music.image)
         val image = if (imgArt != null) {

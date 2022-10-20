@@ -37,6 +37,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@id/bnv"
         android:orientation="horizontal"
+        android:visibility="gone"
         android:padding="@dimen/margin_middle"
         android:background="@color/bg_color"
         android:elevation="8dp"

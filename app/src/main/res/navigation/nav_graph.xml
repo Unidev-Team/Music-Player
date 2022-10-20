@@ -36,9 +36,14 @@
         <action
             android:id="@+id/action_splashScreen_to_introScreen"
             app:destination="@id/introScreen" />
+
         <action
             android:id="@+id/action_splashScreen_to_mainScreen"
-            app:destination="@id/mainScreen" />
+            app:destination="@id/mainScreen"
+            app:popUpToInclusive="true"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/nav_graph"
+            />
 
     </fragment>
 
