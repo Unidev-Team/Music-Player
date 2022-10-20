@@ -7,7 +7,6 @@ import android.content.ServiceConnection
 import android.os.Bundle
 import android.os.IBinder
 import android.view.View
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -40,7 +39,6 @@ class SongsPage : Fragment(R.layout.page_songs), ServiceConnection {
         super.onCreate(savedInstanceState)
         val intent = Intent(requireContext(), MusicService::class.java)
         requireActivity().bindService(intent, this, Context.BIND_AUTO_CREATE)
-        requireActivity().startService(intent)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -54,9 +52,6 @@ class SongsPage : Fragment(R.layout.page_songs), ServiceConnection {
 
         adapter.setItemClickListener {
             MusicPlaying.clickMusic(it)
-            val intent = Intent(requireContext(), MusicService::class.java)
-            /*intent.putExtra("data", MusicPlaying.listMusics[it])*/
-            ContextCompat.startForegroundService(requireContext(), intent)
             findNavController().navigate(MainScreenDirections.actionMainScreenToMusicDetailScreen())
         }
     }

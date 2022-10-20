@@ -6,7 +6,6 @@ import android.app.NotificationManager
 import android.app.PendingIntent
 import android.app.Service
 import android.content.Intent
-import android.graphics.BitmapFactory
 import android.os.Binder
 import android.os.Build
 import android.os.IBinder
@@ -15,15 +14,14 @@ import android.util.Log
 import androidx.core.app.NotificationCompat
 import uz.gita.music_player_io.R
 import uz.gita.music_player_io.broadcast.MusicBroadcast
-import uz.gita.music_player_io.data.model.MusicData
 import uz.gita.music_player_io.utils.MusicPlaying
-import uz.gita.music_player_io.utils.getImageArt
-import kotlin.math.absoluteValue
 
 // Created by Jamshid Isoqov an 10/19/2022
 class MusicService : Service() {
 
     private lateinit var mediaSession: MediaSessionCompat
+
+    private var musicBroadcast: MusicBroadcast? = null
 
     private var stateMus = 0
 
@@ -34,7 +32,10 @@ class MusicService : Service() {
 
     override fun onCreate() {
         super.onCreate()
-        createNotification()
+        if (musicBroadcast==null){
+            musicBroadcast = MusicBroadcast()
+        }
+            createNotification()
     }
 
 
@@ -46,9 +47,7 @@ class MusicService : Service() {
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         stateMus = intent?.getIntExtra("stateMusic", 0)!!
-        Log.d("PPP", stateMus.toString())
         showNotification(stateMus)
-
         return START_REDELIVER_INTENT
     }
 
@@ -69,7 +68,6 @@ class MusicService : Service() {
     private fun showNotification(state: Int) {
         val music = MusicPlaying.musicLiveData.value
 
-        Log.d("TTT", state.toString())
 
         /*val imgArt = getImageArt(music.image)
         val image = if (imgArt != null) {
@@ -79,28 +77,28 @@ class MusicService : Service() {
         }*/
 
         val prevIntent =
-            Intent(baseContext, MusicBroadcast::class.java).setAction(State.PREVIOUS.name)
+            Intent(baseContext,musicBroadcast!!.javaClass).setAction(State.PREVIOUS.name)
         val prevPendingIntent = PendingIntent.getBroadcast(
             baseContext,
             0,
             prevIntent,
-            PendingIntent.FLAG_UPDATE_CURRENT
+            PendingIntent.FLAG_IMMUTABLE
         )
 
-        val playIntent = Intent(baseContext, MusicBroadcast::class.java).setAction(State.PLAY.name)
+        val playIntent = Intent(baseContext, musicBroadcast!!.javaClass).setAction(State.PLAY.name)
         val playPendingIntent = PendingIntent.getBroadcast(
             baseContext,
             0,
             playIntent,
-            PendingIntent.FLAG_UPDATE_CURRENT
+            PendingIntent.FLAG_IMMUTABLE
         )
 
-        val nextIntent = Intent(baseContext, MusicBroadcast::class.java).setAction(State.NEXT.name)
+        val nextIntent = Intent(baseContext, musicBroadcast!!.javaClass).setAction(State.NEXT.name)
         val nextPendingIntent = PendingIntent.getBroadcast(
             baseContext,
             0,
             nextIntent,
-            PendingIntent.FLAG_UPDATE_CURRENT
+            PendingIntent.FLAG_IMMUTABLE
         )
 
         val notification = NotificationCompat.Builder(baseContext, CHANNEL_ID)
@@ -125,6 +123,11 @@ class MusicService : Service() {
 
     companion object {
         const val CHANNEL_ID = "notify"
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        unregisterReceiver(musicBroadcast)
     }
 }
 

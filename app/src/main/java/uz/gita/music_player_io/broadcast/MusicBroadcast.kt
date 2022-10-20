@@ -15,8 +15,10 @@ class MusicBroadcast : BroadcastReceiver() {
             State.PLAY.name -> {
                 if (MusicPlaying.mediaPlayer?.isPlaying!!) {
                     MusicPlaying.pauseMusic()
+                    MusicPlaying.playingObserver.value = false
                 } else {
                     MusicPlaying.startMusic()
+                    MusicPlaying.playingObserver.value = true
                 }
             }
             State.NEXT.name -> {

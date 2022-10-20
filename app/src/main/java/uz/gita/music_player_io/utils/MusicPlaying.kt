@@ -26,8 +26,11 @@ object MusicPlaying {
 
     private var intent: Intent? = null
 
+    val playingObserver = MutableLiveData<Boolean>()
+
     fun clickMusic(pos: Int) {
 
+        if (pos==0) return
         positionMusic = if (pos == listMusics.size) {
             0
         } else {

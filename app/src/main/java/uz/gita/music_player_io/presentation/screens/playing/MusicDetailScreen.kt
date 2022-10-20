@@ -68,6 +68,14 @@ class MusicDetailScreen : Fragment(R.layout.screen_music_detail) {
                 viewModel.setClickNextSong()
             }
         }
+
+        MusicPlaying.playingObserver.observe(viewLifecycleOwner) {
+            if (it) {
+                binding.iconStopOrPlay.setImageResource(R.drawable.ic_pause)
+            } else {
+                binding.iconStopOrPlay.setImageResource(R.drawable.play)
+            }
+        }
     }
 
     private val clickBackObserver = Observer<Unit> {

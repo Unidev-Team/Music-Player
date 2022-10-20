@@ -1,7 +1,6 @@
 package uz.gita.music_player_io.presentation.screens.main
 
 import android.annotation.SuppressLint
-import android.media.MediaPlayer
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
@@ -30,11 +29,9 @@ class MainScreen : Fragment(R.layout.screen_main) {
     private var isPlaying = false
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        binding.bnv.setOnItemReselectedListener {
-            navController =
-                Navigation.findNavController(requireActivity(), R.id.fragment_container_view)
-            binding.bnv.setupWithNavController(navController)
-        }
+        navController =
+            Navigation.findNavController(requireActivity(), R.id.fragment_container_view)
+        binding.bnv.setupWithNavController(navController)
 
         binding.iconPlayOrPause.setOnClickListener {
             if (isPlaying) {
@@ -47,8 +44,16 @@ class MainScreen : Fragment(R.layout.screen_main) {
             isPlaying = !isPlaying
         }
 
+        MusicPlaying.playingObserver.observe(viewLifecycleOwner) {
+            if (it) {
+                binding.iconPlayOrPause.setImageResource(R.drawable.ic_pause)
+            } else {
+                binding.iconPlayOrPause.setImageResource(R.drawable.play)
+            }
+        }
+
         binding.iconNextSong.setOnClickListener {
-            MusicPlaying.clickMusic(MusicPlaying.positionMusic+1)
+            MusicPlaying.clickMusic(MusicPlaying.positionMusic + 1)
         }
 
         MusicPlaying.musicLiveData.observe(viewLifecycleOwner, musicObserver)
@@ -60,7 +65,6 @@ class MainScreen : Fragment(R.layout.screen_main) {
         if (!binding.bottomMusicContainer.isVisible) {
             binding.bottomMusicContainer.visibility = View.VISIBLE
         }
-
         binding.apply {
             imgAlbum.setImageURI(Uri.parse(it.image))
             tvSingerSong.text = "${it.artistName} - ${it.title}"
