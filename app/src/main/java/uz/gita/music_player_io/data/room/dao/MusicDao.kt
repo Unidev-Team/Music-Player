@@ -50,16 +50,14 @@ interface MusicDao {
     @Query("SELECT * FROM playlistdata WHERE id=:id")
     fun getPlaylistById(id: Int): Flow<PlaylistData>
 
-
     @Query("SELECT * FROM playlistdata WHERE id=:id")
     suspend fun getPlayListById(id: Int): PlaylistData
 
-    @Query("select album,image,count(id),path as count from musics group by path")
+    @Query("SELECT path, count(id) as count from musics group by path")
     suspend fun getFolders(): List<FolderData>
 
-    @Query("select * from musics where path=:path ")
+    @Query("SELECT * FROM musics where path=:path ")
     suspend fun getFolderMusicByName(path: String): List<MusicData>
-
 
     @Update
     fun updatePlayList(playlistData: PlaylistData)

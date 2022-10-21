@@ -76,6 +76,9 @@
         <argument
             android:name="folder"
             app:argType="uz.gita.music_player_io.data.model.FolderData" />
+        <action
+            android:id="@+id/action_folderDetailsScreen_to_musicDetailScreen"
+            app:destination="@id/musicDetailScreen" />
     </fragment>
 
 </navigation>

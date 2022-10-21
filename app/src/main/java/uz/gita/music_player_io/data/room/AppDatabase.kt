@@ -3,6 +3,7 @@ package uz.gita.music_player_io.data.room
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import uz.gita.music_player_io.data.model.FolderData
 import uz.gita.music_player_io.data.model.MusicData
 import uz.gita.music_player_io.data.model.PlaylistData
 import uz.gita.music_player_io.data.room.dao.MusicDao

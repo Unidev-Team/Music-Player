@@ -23,6 +23,4 @@ class FolderViewModelImpl @Inject constructor(
             getAllFolders.emit(folderUseCase.getFolders())
         }
     }
-
-
 }

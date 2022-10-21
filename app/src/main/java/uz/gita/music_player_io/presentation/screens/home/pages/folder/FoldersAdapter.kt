@@ -32,7 +32,9 @@ class FoldersAdapter : ListAdapter<FolderData, FoldersAdapter.ViewHolder>(itemFo
         fun onBind() {
             val data = getItem(absoluteAdapterPosition)
             binding.apply {
-                tvFolderName.text = data.path.substring(data.path.lastIndexOf('/'))
+                //tvFolderName.text = data.path.substring(data.path.lastIndexOf('/'))
+                val s = data.path.split("/")[data.path.split("/").size - 2]
+                tvFolderName.text = s
                 tvFolderMusicCount.text = "${data.count} songs"
             }
         }
@@ -53,9 +55,7 @@ private val itemFolderCallback = object : DiffUtil.ItemCallback<FolderData>() {
         oldItem == newItem
 
     override fun areContentsTheSame(oldItem: FolderData, newItem: FolderData): Boolean =
-        oldItem.folderName == newItem.folderName &&
-                oldItem.path == newItem.path &&
-                oldItem.image == newItem.image &&
+        oldItem.path == newItem.path &&
                 oldItem.count == newItem.count
 
 }
