@@ -10,7 +10,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import uz.gita.music_player_io.R
-import uz.gita.music_player_io.databinding.PageAlbumsBinding
+import uz.gita.music_player_io.databinding.PageFolderBinding
 import uz.gita.music_player_io.presentation.viewmodels.FolderViewModel
 import uz.gita.music_player_io.presentation.viewmodels.impl.FolderViewModelImpl
 
@@ -19,27 +19,34 @@ import uz.gita.music_player_io.presentation.viewmodels.impl.FolderViewModelImpl
  */
 
 @AndroidEntryPoint
-class FolderPage : Fragment(R.layout.page_albums) {
+class FolderPage : Fragment(R.layout.page_folder) {
 
     private val viewModel: FolderViewModel by viewModels<FolderViewModelImpl>()
-
-    private val viewBinding: PageAlbumsBinding by viewBinding()
-
-    private val adapter: FoldersAdapter by lazy(LazyThreadSafetyMode.NONE) {
-        FoldersAdapter()
-    }
+    private val binding: PageFolderBinding by viewBinding()
+    private val adapter: FoldersAdapter by lazy(LazyThreadSafetyMode.NONE) { FoldersAdapter() }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        initView()
+        setupObserver()
+        itemClick()
+    }
 
-        viewBinding.listFolders.adapter = adapter
+    private fun initView() {
+        binding.apply {
+            binding.listFolders.adapter = adapter
+            binding.tcFoldersCount.text = adapter.currentList.size.toString()
+        }
+    }
 
+    private fun setupObserver() {
         viewModel.getAllFolders.onEach {
             adapter.submitList(it)
         }.launchIn(viewLifecycleOwner.lifecycleScope)
+    }
 
+    private fun itemClick() {
         adapter.setItemClickListener {
 
         }
     }
-
 }

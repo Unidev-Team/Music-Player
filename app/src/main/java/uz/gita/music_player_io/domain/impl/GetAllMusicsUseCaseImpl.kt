@@ -45,21 +45,24 @@ class GetAllMusicsUseCaseImpl @Inject constructor(
         if (cursor != null) {
             if (cursor.moveToFirst()) {
                 do {
-                    val titleC =
-                        cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.TITLE))
-                    val idC =
-                        cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media._ID))
-                    val albumC =
-                        cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Albums.ALBUM))
-                    val artistC =
-                        cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.ARTIST))
-                    val pathC =
-                        cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DATA))
-                    val durationC =
-                        cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DURATION))
-                    val albumIdC =
-                        cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.ALBUM_ID))
-                            .toString()
+                    val titleC = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.TITLE))
+                    val idC = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media._ID))
+                    val albumC = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Albums.ALBUM))
+                    val artistC = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.ARTIST))
+
+                    var newStr = ""
+                    println(newStr)
+                    val data = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DATA))
+                    val size = data.split("/").size
+                    data.split("/").subList(0, size - 1).forEach {
+                        newStr += "$it/"
+                    }
+
+                    val pathC = newStr
+
+                    val durationC = cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DURATION))
+                    val albumIdC = cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.ALBUM_ID)).toString()
+
                     val uri = Uri.parse("content://media/external/audio/albumart")
                     val artUriC = Uri.withAppendedPath(uri, albumIdC).toString()
                     val music = MusicData(
