@@ -22,8 +22,11 @@ interface UseCaseModule {
     fun bindSplashUseCase(impl: SplashUseCaseImpl): SplashUseCase
 
     @Binds
-    fun bindArtistUseCase(impl:ArtistUseCaseImpl):ArtistUseCase
+    fun bindArtistUseCase(impl: ArtistUseCaseImpl): ArtistUseCase
 
     @Binds
-    fun bindAddPlaylistUseCase(impl:PlaylistUseCaseImpl):PlaylistUseCase
+    fun bindAddPlaylistUseCase(impl: PlaylistUseCaseImpl): PlaylistUseCase
+
+    @Binds
+    fun bindsFoldersUseCase(impl: FolderUseCaseImpl): FolderUseCase
 }

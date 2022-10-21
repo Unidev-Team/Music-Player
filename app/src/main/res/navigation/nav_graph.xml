@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_mainScreen_to_artistDetailScreen"
             app:destination="@id/artistDetailScreen" />
+        <action
+            android:id="@+id/action_mainScreen_to_folderDetailsScreen"
+            app:destination="@id/folderDetailsScreen" />
     </fragment>
     <fragment
         android:id="@+id/introScreen"
@@ -64,6 +67,15 @@
         <action
             android:id="@+id/action_artistDetailScreen_to_musicDetailScreen"
             app:destination="@id/musicDetailScreen" />
+    </fragment>
+    <fragment
+        android:id="@+id/folderDetailsScreen"
+        tools:layout="@layout/screen_folder_details"
+        android:name="uz.gita.music_player_io.presentation.screens.home.pages.folder.details.FolderDetailsScreen"
+        android:label="FolderDetailsScreen" >
+        <argument
+            android:name="folder"
+            app:argType="uz.gita.music_player_io.data.model.FolderData" />
     </fragment>
 
 </navigation>

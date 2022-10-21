@@ -2,7 +2,7 @@ package uz.gita.music_player_io.presentation.screens.home.pages
 
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import uz.gita.music_player_io.presentation.screens.home.pages.album.AlbumPage
+import uz.gita.music_player_io.presentation.screens.home.pages.folder.FolderPage
 import uz.gita.music_player_io.presentation.screens.home.pages.artists.ArtistPage
 import uz.gita.music_player_io.presentation.screens.home.pages.songs.SongsPage
 
@@ -17,6 +17,6 @@ class HomeViewPagerAdapter(fa: FragmentActivity) : FragmentStateAdapter(fa) {
     override fun createFragment(position: Int) = when (position) {
         0 -> SongsPage()
         1 -> ArtistPage()
-        else -> AlbumPage()
+        else -> FolderPage()
     }
 }

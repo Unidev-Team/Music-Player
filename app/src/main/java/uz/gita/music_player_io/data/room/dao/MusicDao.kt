@@ -3,6 +3,7 @@ package uz.gita.music_player_io.data.room.dao
 import androidx.room.*
 import kotlinx.coroutines.flow.Flow
 import uz.gita.music_player_io.data.model.ArtistData
+import uz.gita.music_player_io.data.model.FolderData
 import uz.gita.music_player_io.data.model.MusicData
 import uz.gita.music_player_io.data.model.PlaylistData
 
@@ -38,10 +39,10 @@ interface MusicDao {
     }
 
     @Query("SELECT artistName,image,count(id) as count FROM musics group by artistName")
-    suspend fun getAllArtist() :List<ArtistData>
+    suspend fun getAllArtist(): List<ArtistData>
 
     @Query("SELECT * FROM musics WHERE artistName = :artistName")
-    suspend fun getAllSongsByArtist(artistName:String):List<MusicData>
+    suspend fun getAllSongsByArtist(artistName: String): List<MusicData>
 
     @Query("SELECT * FROM playlistdata")
     fun getAllPlaylist(): Flow<List<PlaylistData>>
@@ -52,6 +53,12 @@ interface MusicDao {
 
     @Query("SELECT * FROM playlistdata WHERE id=:id")
     suspend fun getPlayListById(id: Int): PlaylistData
+
+    @Query("select album,image,count(id),path as count from musics group by path")
+    suspend fun getFolders(): List<FolderData>
+
+    @Query("select * from musics where path=:path ")
+    suspend fun getFolderMusicByName(path: String): List<MusicData>
 
 
     @Update
