@@ -86,6 +86,7 @@
         android:background="@drawable/bg_main_icon"
         android:padding="@dimen/margin_middle"
         android:src="@drawable/play"
+        app:tint="@color/bg_color"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/iv_menu"
         app:layout_constraintTop_toTopOf="parent" />

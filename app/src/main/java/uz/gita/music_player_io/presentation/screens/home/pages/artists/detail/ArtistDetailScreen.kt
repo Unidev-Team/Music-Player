@@ -32,6 +32,7 @@ class ArtistDetailScreen : Fragment(R.layout.screen_artist_detial) {
     private val adapter by lazy { SongsAdapter() }
     private val binding: ScreenArtistDetialBinding by viewBinding()
     private var list:List<MusicData> = listOf()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -44,16 +45,26 @@ class ArtistDetailScreen : Fragment(R.layout.screen_artist_detial) {
 
         binding.listArtistSongs.adapter = adapter
 
+        binding.apply {
+            imgAlbum.setImageURI(Uri.parse(args.artistData.image))
+            tvArtisName.text = args.artistData.artistName
+            tvCountSongs.text = args.artistData.count.toString()
+        }
+
         viewModel.songsByArtisFlow.onEach {
             adapter.submitList(it)
             list = it
         }.launchIn(lifecycleScope)
 
         adapter.setItemClickListener {
-            MusicPlaying.clickMusic(it)
             MusicPlaying.setMusicList(list)
-
+            MusicPlaying.clickMusic(it)
         }
+
+        binding.bottomMusicContainer.setOnClickListener {
+            findNavController().navigate(ArtistDetailScreenDirections.actionArtistDetailScreenToMusicDetailScreen())
+        }
+
         binding.iconPlayOrPause.setOnClickListener {
             if (isPlaying) {
                 MusicPlaying.pauseMusic()
@@ -70,9 +81,8 @@ class ArtistDetailScreen : Fragment(R.layout.screen_artist_detial) {
         }
 
         MusicPlaying.musicLiveData.observe(viewLifecycleOwner, musicObserver)
-
-
     }
+
     @SuppressLint("SetTextI18n")
     private val musicObserver = Observer<MusicData> {
 
@@ -81,7 +91,7 @@ class ArtistDetailScreen : Fragment(R.layout.screen_artist_detial) {
         }
 
         binding.apply {
-            imgAlbum.setImageURI(Uri.parse(it.image))
+            imgArtist.setImageURI(Uri.parse(it.image))
             tvSingerSong.text = "${it.artistName} - ${it.title}"
             isPlaying = true
         }
