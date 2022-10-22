@@ -5,12 +5,15 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import uz.gita.music_player_io.R
 import uz.gita.music_player_io.databinding.PageFolderBinding
+import uz.gita.music_player_io.presentation.screens.home.pages.folder.details.FolderDetailsScreenDirections
+import uz.gita.music_player_io.presentation.screens.main.MainScreenDirections
 import uz.gita.music_player_io.presentation.viewmodels.FolderViewModel
 import uz.gita.music_player_io.presentation.viewmodels.impl.FolderViewModelImpl
 
@@ -46,7 +49,7 @@ class FolderPage : Fragment(R.layout.page_folder) {
 
     private fun itemClick() {
         adapter.setItemClickListener {
-
+            findNavController().navigate(MainScreenDirections.actionMainScreenToFolderDetailsScreen(it))
         }
     }
 }

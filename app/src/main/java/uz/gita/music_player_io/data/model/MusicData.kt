@@ -19,5 +19,6 @@ data class MusicData(
     val displayName: String,
     val duration: Long,
     val image: String,
-    val path: String
+    val path: String,
+    val packageMusic: String,
 ) : Parcelable

@@ -5,7 +5,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-
     <RelativeLayout
         android:id="@+id/actionbar"
         android:layout_width="match_parent"
@@ -143,7 +142,9 @@
                 android:text="@string/shuffle"
                 android:textColor="@color/white"
                 android:textSize="18sp" />
+
         </LinearLayout>
+
     </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -222,5 +223,54 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/bottom_folder_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/bg_color"
+        android:elevation="8dp"
+        android:orientation="horizontal"
+        android:padding="@dimen/margin_middle"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/img_artist_folder"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginHorizontal="8dp"
+            android:layout_marginVertical="4dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/artist"
+            app:shapeAppearanceOverlay="@style/ShapeImageView" />
+
+        <TextView
+            android:id="@+id/tv_singer_folder"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:ellipsize="marquee"
+            android:textColor="@color/white"
+            tools:text="Star boy - The Weekend, Daft Pu..." />
+
+        <ImageView
+            android:id="@+id/icon_play_or_pause_folder"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_vertical"
+            android:padding="@dimen/margin_middle"
+            android:src="@drawable/ic_pause"
+            tools:ignore="ContentDescription" />
+
+        <ImageView
+            android:id="@+id/icon_next_song_folder"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_vertical"
+            android:padding="@dimen/margin_middle"
+            android:src="@drawable/ic_next"
+            tools:ignore="ContentDescription" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

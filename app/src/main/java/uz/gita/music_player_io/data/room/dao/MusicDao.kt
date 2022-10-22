@@ -53,7 +53,7 @@ interface MusicDao {
     @Query("SELECT * FROM playlistdata WHERE id=:id")
     suspend fun getPlayListById(id: Int): PlaylistData
 
-    @Query("SELECT path, count(id) as count from musics group by path")
+    @Query("SELECT packageMusic, path,  count(id) as count from musics group by packageMusic")
     suspend fun getFolders(): List<FolderData>
 
     @Query("SELECT * FROM musics where path=:path ")

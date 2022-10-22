@@ -18,7 +18,7 @@ class FolderDetailsViewModelImpl @Inject constructor(private val useCase: Folder
 
     override fun getAllMusicsByFolder(folderData: FolderData) {
         viewModelScope.launch {
-            musicsByFolder.emit(useCase.getAllMusicsByFolder(folderData.path))
+            musicsByFolder.emit(useCase.getAllMusicsByFolder(folderData.oldPackage))
         }
     }
 }

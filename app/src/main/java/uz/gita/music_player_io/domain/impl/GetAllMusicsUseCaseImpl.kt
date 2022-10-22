@@ -52,13 +52,18 @@ class GetAllMusicsUseCaseImpl @Inject constructor(
 
                     var newStr = ""
                     println(newStr)
-                    val data = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DATA))
-                    val size = data.split("/").size
-                    data.split("/").subList(0, size - 1).forEach {
+
+                    val pathC = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DATA))
+
+                    val packageData = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DATA))
+
+                    val size = packageData.split("/").size
+
+                    packageData.split("/").subList(0, size - 1).forEach {
                         newStr += "$it/"
                     }
 
-                    val pathC = newStr
+                    val newPackage = newStr
 
                     val durationC = cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DURATION))
                     val albumIdC = cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.ALBUM_ID)).toString()
@@ -73,7 +78,8 @@ class GetAllMusicsUseCaseImpl @Inject constructor(
                         duration = durationC,
                         image = artUriC,
                         displayName = "",
-                        path = pathC
+                        path = pathC,
+                        packageMusic = newPackage
                     )
                     val file = File(music.path)
                     if (file.exists()) {
