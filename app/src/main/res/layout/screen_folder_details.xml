@@ -231,6 +231,7 @@
         android:elevation="8dp"
         android:orientation="horizontal"
         android:padding="@dimen/margin_middle"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent">
 
         <com.google.android.material.imageview.ShapeableImageView

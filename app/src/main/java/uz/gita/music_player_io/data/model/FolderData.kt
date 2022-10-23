@@ -10,6 +10,5 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class FolderData(
     val packageMusic: String,
-    val oldPackage: String,
     val count: Int
 ) : Parcelable

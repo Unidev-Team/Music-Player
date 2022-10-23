@@ -43,6 +43,7 @@ class FolderDetailsScreen : Fragment(R.layout.screen_folder_details) {
         SongsAdapter()
     }
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         viewBinding.listArtistSongs.adapter = adapter
@@ -78,6 +79,9 @@ class FolderDetailsScreen : Fragment(R.layout.screen_folder_details) {
         viewBinding.iconNextSong.setOnClickListener {
             MusicPlaying.clickMusic(MusicPlaying.positionMusic+1)
         }
+
+        MusicPlaying.musicLiveData.observe(viewLifecycleOwner, musicObserver)
+
     }
 
     @SuppressLint("SetTextI18n")
