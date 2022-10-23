@@ -19,10 +19,22 @@ class SongsAdapter : ListAdapter<MusicData, SongsAdapter.SongsViewHolder>(SongsA
 
     private var itemItemClick: ((Int) -> Unit)? = null
 
+    private var itemFavouriteClick: ((MusicData) -> Unit)? = null
+
+    fun setItemFavouriteClickListener(block: (MusicData) -> Unit) {
+        itemFavouriteClick = block
+    }
+
     inner class SongsViewHolder(private val binding: ItemSongBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         init {
+
+            binding.icFavourite.setOnClickListener {
+                val data = getItem(absoluteAdapterPosition)
+                itemFavouriteClick?.invoke(data.copy(favourite = !data.favourite))
+            }
+
             binding.root.setOnClickListener {
                 itemItemClick?.invoke(absoluteAdapterPosition)
             }
@@ -43,6 +55,12 @@ class SongsAdapter : ListAdapter<MusicData, SongsAdapter.SongsViewHolder>(SongsA
 
             binding.tvSongDuration.text = getItem(absoluteAdapterPosition).duration.longToMin()
 
+            val data = getItem(absoluteAdapterPosition)
+            if (data.favourite) {
+                binding.icFavourite.setImageResource(R.drawable.ic_favorite_fill)
+            } else {
+                binding.icFavourite.setImageResource(R.drawable.ic_favorite)
+            }
             Glide
                 .with(binding.root.context)
                 .load(getItem(absoluteAdapterPosition).image)
@@ -75,7 +93,9 @@ object SongsAdapterComparator : DiffUtil.ItemCallback<MusicData>() {
 
     override fun areContentsTheSame(oldItem: MusicData, newItem: MusicData): Boolean {
         return oldItem.id == newItem.id && oldItem.displayName == newItem.displayName &&
-                oldItem.album == newItem.album && oldItem.duration == newItem.duration && oldItem.title == newItem.title && oldItem.path == newItem.path
+                oldItem.album == newItem.album && oldItem.duration == newItem.duration &&
+                oldItem.title == newItem.title && oldItem.path == newItem.path &&
+                oldItem.favourite == newItem.favourite
 
     }
 

@@ -15,4 +15,6 @@ interface HomeViewModel {
     fun changeMusic(playListWithMusics: PlayListWithMusics)
 
     fun setPlaylistId(id: Int)
+
+    fun updateMusic(musicData: MusicData)
 }

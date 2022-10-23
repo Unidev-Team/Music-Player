@@ -53,4 +53,10 @@ class HomeViewModelImpl @Inject constructor(
     override fun setPlaylistId(id: Int) {
         playListId = id
     }
+
+    override fun updateMusic(musicData: MusicData) {
+        viewModelScope.launch {
+            musicsUseCase.updateMusic(musicData)
+        }
+    }
 }

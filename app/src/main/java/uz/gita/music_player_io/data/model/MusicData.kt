@@ -1,11 +1,9 @@
 package uz.gita.music_player_io.data.model
 
 import android.os.Parcelable
-import android.text.BoringLayout
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import kotlinx.parcelize.Parcelize
-import java.io.Serializable
 
 // Created by Jamshid Isoqov an 10/7/2022
 @Parcelize
@@ -21,4 +19,5 @@ data class MusicData(
     val image: String,
     val path: String,
     val packageMusic: String,
+    val favourite: Boolean = false
 ) : Parcelable

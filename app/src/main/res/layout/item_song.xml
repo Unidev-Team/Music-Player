@@ -78,13 +78,13 @@
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/iv_menu"
+        android:id="@+id/ic_favourite"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_gravity="center_vertical"
         android:layout_marginHorizontal="@dimen/margin_middle"
         android:padding="@dimen/margin_middle"
-        android:src="@drawable/ic_vert"
+        android:src="@drawable/ic_favorite"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
