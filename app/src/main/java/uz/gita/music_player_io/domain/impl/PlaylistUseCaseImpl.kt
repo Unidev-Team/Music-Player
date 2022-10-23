@@ -1,8 +1,10 @@
 package uz.gita.music_player_io.domain.impl
 
 import kotlinx.coroutines.channels.awaitClose
-import kotlinx.coroutines.flow.*
-import uz.gita.music_player_io.data.model.MusicData
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.callbackFlow
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.combine
 import uz.gita.music_player_io.data.model.PlaylistData
 import uz.gita.music_player_io.data.model.data.PlayListWithMusics
 import uz.gita.music_player_io.data.room.dao.MusicDao
@@ -24,17 +26,12 @@ class PlaylistUseCaseImpl @Inject constructor(
     override fun getMusicsWithPlaylist(id: Int): Flow<List<PlayListWithMusics>> = callbackFlow {
         musicDao.getAllMusics().combine(musicDao.getPlaylistById(id)) { f1, f2 ->
             val playListWithMusics = ArrayList<PlayListWithMusics>()
-            var counter = 0
             val playlist = f2.musicList
             var isInPlaylistData: Boolean
-            var music: MusicData = f1[0]
             for (i in f1) {
-                isInPlaylistData = if (counter < playlist.size && i.title == music.title) {
-                    counter++
-                    if (counter < playlist.size)
-                        music = playlist[counter]
-                    true
-                } else false
+                isInPlaylistData = playlist.any {
+                    it.title == i.title&&it.path==i.path
+                }
                 playListWithMusics.add(PlayListWithMusics(i, isInPlaylistData))
             }
             playListWithMusics
@@ -42,7 +39,7 @@ class PlaylistUseCaseImpl @Inject constructor(
         }.collectLatest {
             trySend(it)
         }
-        awaitClose{}
+        awaitClose {}
     }
 
     override suspend fun changePlayList(playlistData: PlaylistData) {

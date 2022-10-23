@@ -32,7 +32,6 @@ class FoldersAdapter : ListAdapter<FolderData, FoldersAdapter.ViewHolder>(itemFo
         fun onBind() {
             val data = getItem(absoluteAdapterPosition)
             binding.apply {
-                //tvFolderName.text = data.path.substring(data.path.lastIndexOf('/'))
                 val s = data.packageMusic.split("/")[data.packageMusic.split("/").size - 1]
                 tvFolderName.text = s
                 tvFolderMusicCount.text = "${data.count} songs"

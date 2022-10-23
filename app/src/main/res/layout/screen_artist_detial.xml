@@ -23,24 +23,6 @@
             android:padding="8dp"
             android:src="@drawable/ic_back" />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/menu"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:layout_marginEnd="8dp"
-            android:padding="8dp"
-            android:src="@drawable/ic_baseline_more_vert_24" />
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/btn_search"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_centerVertical="true"
-            android:layout_toStartOf="@id/menu"
-            android:padding="10dp"
-            android:src="@drawable/search" />
     </RelativeLayout>
 
     <com.google.android.material.imageview.ShapeableImageView
@@ -54,7 +36,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/actionbar"
-        app:layout_constraintWidth_percent="0.6"
+        app:layout_constraintWidth_percent="0.5"
         app:shapeAppearanceOverlay="@style/ShapeImageDetail" />
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -80,70 +62,6 @@
         app:layout_constraintTop_toBottomOf="@id/tv_artis_name"
         tools:text="20 songs" />
 
-    <LinearLayout
-        android:id="@+id/btn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_standard"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_count_songs">
-
-        <LinearLayout
-            android:id="@+id/bnt_shuffle"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="8dp"
-            android:layout_weight="1"
-            android:background="@drawable/bg_btn_shuffle"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_gravity="center"
-                android:src="@drawable/shuffle" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginStart="8dp"
-                android:text="Shuffle"
-                android:textColor="@color/white"
-                android:textSize="18sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/btn_play"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="16dp"
-            android:layout_weight="1"
-            android:background="@drawable/bg_btn_artist"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_gravity="center"
-                android:src="@drawable/play" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginStart="8dp"
-                android:text="Shuffle"
-                android:textColor="@color/white"
-                android:textSize="18sp" />
-        </LinearLayout>
-    </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/title_songs"
@@ -155,7 +73,7 @@
         android:textColor="@color/white"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn" />
+        app:layout_constraintTop_toBottomOf="@id/tv_count_songs" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list_artist_songs"

@@ -38,7 +38,7 @@ class PlaylistAdapter : ListAdapter<PlaylistData, PlaylistAdapter.PlaylistViewHo
             binding.tvSongsCount.apply {
                 isSelected = true
                 setSingleLine()
-                text = getItem(absoluteAdapterPosition).musicCount.toString()
+                text = getItem(absoluteAdapterPosition).musicList.size.toString()
             }
         }
     }

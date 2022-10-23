@@ -26,7 +26,6 @@
         android:layout_marginHorizontal="@dimen/margin_standard"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/iv_play"
         app:layout_constraintStart_toEndOf="@id/iv_artist"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -77,19 +76,6 @@
         </LinearLayout>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
-
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/iv_play"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_gravity="center_vertical"
-        android:background="@drawable/bg_main_icon"
-        android:padding="@dimen/margin_middle"
-        android:src="@drawable/play"
-        app:tint="@color/bg_color"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/iv_menu"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/iv_menu"

@@ -1,5 +1,6 @@
 package uz.gita.music_player_io.presentation.screens.home.pages.folder
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
@@ -41,9 +42,11 @@ class FolderPage : Fragment(R.layout.page_folder) {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private fun setupObserver() {
         viewModel.getAllFolders.onEach {
             adapter.submitList(it)
+            binding.tcFoldersCount.text = it.size.toString()+" folders"
         }.launchIn(viewLifecycleOwner.lifecycleScope)
     }
 
