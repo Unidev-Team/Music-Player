@@ -4,12 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@id/splashScreen">
+
     <fragment
         android:id="@+id/mainScreen"
         android:name="uz.gita.music_player_io.presentation.screens.main.MainScreen"
         android:label="MainScreen"
         tools:layout="@layout/screen_main"
         >
+
         <action
             android:id="@+id/action_mainScreen_to_musicDetailScreen"
             app:destination="@id/musicDetailScreen" />
@@ -19,6 +21,7 @@
         <action
             android:id="@+id/action_mainScreen_to_folderDetailsScreen"
             app:destination="@id/folderDetailsScreen" />
+
     </fragment>
     <fragment
         android:id="@+id/introScreen"

@@ -5,7 +5,9 @@ import uz.gita.music_player_io.data.model.MusicData
 
 interface FavouriteViewModel {
 
-    fun getAllFavouriteMusic(): Flow<List<MusicData>>
+    val getAllFavouriteFlow: Flow<List<MusicData>>
+
+    fun getAllFavouriteMusic()
 
     fun updateMusic(music: MusicData)
 

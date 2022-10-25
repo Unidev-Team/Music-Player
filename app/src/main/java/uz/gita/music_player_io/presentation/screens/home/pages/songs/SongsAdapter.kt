@@ -1,5 +1,6 @@
 package uz.gita.music_player_io.presentation.screens.home.pages.songs
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -34,10 +35,7 @@ class SongsAdapter : ListAdapter<MusicData, SongsAdapter.SongsViewHolder>(SongsA
 
                 val data = getItem(absoluteAdapterPosition)
 
-                if(data.favourite == 1) data.favourite = 0
-                else data.favourite = 1
-
-                itemFavouriteClick?.invoke(data.copy(favourite = data.favourite))
+                itemFavouriteClick?.invoke(data.copy(favourite = 1 - data.favourite))
             }
 
             binding.root.setOnClickListener {
@@ -100,9 +98,10 @@ object SongsAdapterComparator : DiffUtil.ItemCallback<MusicData>() {
     }
 
     override fun areContentsTheSame(oldItem: MusicData, newItem: MusicData): Boolean {
-        return oldItem.id == newItem.id && oldItem.displayName == newItem.displayName &&
-                oldItem.album == newItem.album && oldItem.duration == newItem.duration &&
-                oldItem.title == newItem.title && oldItem.path == newItem.path &&
-                oldItem.favourite == newItem.favourite
+
+        Log.d("TTT", "${oldItem}")
+        Log.d("TTT", "${newItem}")
+
+        return oldItem.id == newItem.id && oldItem.path == newItem.path && oldItem.favourite == newItem.favourite
     }
 }

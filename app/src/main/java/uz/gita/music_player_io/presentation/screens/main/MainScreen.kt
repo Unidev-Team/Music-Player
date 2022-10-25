@@ -62,6 +62,7 @@ class MainScreen : Fragment(R.layout.screen_main) {
         }
 
         MusicPlaying.musicLiveData.observe(viewLifecycleOwner, musicObserver)
+
     }
 
     @SuppressLint("SetTextI18n")

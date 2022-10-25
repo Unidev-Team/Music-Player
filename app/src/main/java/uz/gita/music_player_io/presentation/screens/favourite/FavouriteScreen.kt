@@ -39,7 +39,7 @@ class FavouriteScreen : Fragment(R.layout.screen_favourite){
 
         binding.rvFavourite.adapter = adapter
 
-        viewModel.getAllFavouriteMusic().onEach {
+        viewModel.getAllFavouriteFlow.onEach {
             list = it
             adapter.submitList(it)
         }.launchIn(lifecycleScope)
@@ -52,5 +52,8 @@ class FavouriteScreen : Fragment(R.layout.screen_favourite){
             MusicPlaying.setMusicList(list)
             MusicPlaying.clickMusic(it)
         }
+
+        viewModel.getAllFavouriteMusic()
+
     }
 }

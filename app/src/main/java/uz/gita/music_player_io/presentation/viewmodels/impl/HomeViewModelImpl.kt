@@ -23,8 +23,7 @@ class HomeViewModelImpl @Inject constructor(
 
     private var playListId: Int = 0
 
-    override fun getAllMusics(): Flow<List<PlayListWithMusics>> =
-        playlistUseCase.getMusicsWithPlaylist(playListId)
+    override fun getAllMusics(): Flow<List<PlayListWithMusics>> = playlistUseCase.getMusicsWithPlaylist(playListId)
 
     override fun getAllMusicsPlaylist(): Flow<List<MusicData>> = musicsUseCase.getAllMusics()
 

@@ -32,10 +32,19 @@ interface MusicDao {
     @Query("DELETE FROM musics")
     suspend fun deleteAllMusics()
 
+    @Query("SELECT * FROM musics WHERE path=:path")
+    suspend fun getMusicByFavourite(path: String): MusicData?
+
     @Transaction
     suspend fun clearAndUpdateData(musicList: List<MusicData>) {
+        val listUpdate = ArrayList<MusicData>()
+        for (i in musicList) {
+            val data = getMusicByFavourite(i.path)
+            val fav = data?.favourite ?: 0
+            listUpdate.add(i.copy(favourite = fav))
+        }
         deleteAllMusics()
-        insertMusic(musicList)
+        insertMusic(listUpdate)
     }
 
     @Query("SELECT artistName,image,count(id) as count FROM musics group by artistName")

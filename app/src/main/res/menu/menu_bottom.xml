@@ -16,9 +16,4 @@
         android:icon="@drawable/playlist"
         android:title="@string/playlist" />
 
-    <item
-        android:id="@+id/settingsScreen"
-        android:icon="@drawable/settings"
-        android:title="@string/settings" />
-
 </menu>

@@ -22,8 +22,7 @@ class MusicsUseCaseImpl @Inject constructor(
         dao.clearAndUpdateData(getAllMusicsUseCase.getAllMusics())
     }
 
-    override fun getAllMusics(): Flow<List<MusicData>> =
-        dao.getAllMusics()
+    override fun getAllMusics(): Flow<List<MusicData>> = dao.getAllMusics()
 
     override fun getAllFavouriteMusic(): Flow<List<MusicData>> = dao.getAllFavouriteMusic()
 

@@ -10,11 +10,7 @@
         android:name="uz.gita.music_player_io.presentation.screens.home.HomeScreen"
         android:label="HomeScreen"
         tools:layout="@layout/screen_home" />
-    <fragment
-        android:id="@+id/settingsScreen"
-        android:name="uz.gita.music_player_io.presentation.screens.settings.SettingsScreen"
-        android:label="SettingsScreen"
-        tools:layout="@layout/screen_settings" />
+
     <fragment
         android:id="@+id/playlistScreen"
         android:name="uz.gita.music_player_io.presentation.screens.playlist.PlaylistScreen"
