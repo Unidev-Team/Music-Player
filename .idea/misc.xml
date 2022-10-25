@@ -5,8 +5,6 @@
       <map>
         <entry key="..\:/Users/Jamshid/AndroidStudioProjects/MusicPlayerPro/app/src/main/res/drawable/bg_btn_navigation.xml" value="0.1465" />
         <entry key="..\:/Users/Jamshid/AndroidStudioProjects/MusicPlayerPro/app/src/main/res/drawable/bg_main_icon.xml" value="0.119" />
-        <entry key="..\:/Users/Jamshid/AndroidStudioProjects/MusicPlayerPro/app/src/main/res/drawable/ic_favorite.xml" value="0.1" />
-        <entry key="..\:/Users/Jamshid/AndroidStudioProjects/MusicPlayerPro/app/src/main/res/drawable/ic_favorite_fill.xml" value="0.1" />
         <entry key="..\:/Users/Jamshid/AndroidStudioProjects/MusicPlayerPro/app/src/main/res/drawable/ic_folder.xml" value="0.1465" />
         <entry key="..\:/Users/Jamshid/AndroidStudioProjects/MusicPlayerPro/app/src/main/res/drawable/ic_music.xml" value="0.119" />
         <entry key="..\:/Users/Jamshid/AndroidStudioProjects/MusicPlayerPro/app/src/main/res/layout/activity_main.xml" value="0.2484375" />
@@ -14,12 +12,12 @@
         <entry key="..\:/Users/Jamshid/AndroidStudioProjects/MusicPlayerPro/app/src/main/res/layout/item_intro_viewpager.xml" value="0.2039333048311244" />
         <entry key="..\:/Users/Jamshid/AndroidStudioProjects/MusicPlayerPro/app/src/main/res/layout/item_playlist.xml" value="0.2039333048311244" />
         <entry key="..\:/Users/Jamshid/AndroidStudioProjects/MusicPlayerPro/app/src/main/res/layout/item_selectable_song.xml" value="0.2039333048311244" />
-        <entry key="..\:/Users/Jamshid/AndroidStudioProjects/MusicPlayerPro/app/src/main/res/layout/item_song.xml" value="0.264" />
+        <entry key="..\:/Users/Jamshid/AndroidStudioProjects/MusicPlayerPro/app/src/main/res/layout/item_song.xml" value="0.2013507809202195" />
         <entry key="..\:/Users/Jamshid/AndroidStudioProjects/MusicPlayerPro/app/src/main/res/layout/list_item_folders.xml" value="0.2013507809202195" />
         <entry key="..\:/Users/Jamshid/AndroidStudioProjects/MusicPlayerPro/app/src/main/res/layout/page_albums.xml" value="0.2039333048311244" />
         <entry key="..\:/Users/Jamshid/AndroidStudioProjects/MusicPlayerPro/app/src/main/res/layout/page_artists.xml" value="0.2039333048311244" />
         <entry key="..\:/Users/Jamshid/AndroidStudioProjects/MusicPlayerPro/app/src/main/res/layout/page_folder.xml" value="0.2039333048311244" />
-        <entry key="..\:/Users/Jamshid/AndroidStudioProjects/MusicPlayerPro/app/src/main/res/layout/page_songs.xml" value="0.152" />
+        <entry key="..\:/Users/Jamshid/AndroidStudioProjects/MusicPlayerPro/app/src/main/res/layout/page_songs.xml" value="0.2039333048311244" />
         <entry key="..\:/Users/Jamshid/AndroidStudioProjects/MusicPlayerPro/app/src/main/res/layout/screen_artist_detial.xml" value="0.2013507809202195" />
         <entry key="..\:/Users/Jamshid/AndroidStudioProjects/MusicPlayerPro/app/src/main/res/layout/screen_favourite.xml" value="0.2039333048311244" />
         <entry key="..\:/Users/Jamshid/AndroidStudioProjects/MusicPlayerPro/app/src/main/res/layout/screen_folder_details.xml" value="0.152" />
@@ -48,10 +46,17 @@
         <entry key="..\:/Users/User/StudioProjects/Music-Player/app/src/main/res/layout/bottom_music_view.xml" value="0.20697463768115942" />
         <entry key="..\:/Users/User/StudioProjects/Music-Player/app/src/main/res/layout/item_song.xml" value="0.18802083333333333" />
         <entry key="..\:/Users/User/StudioProjects/Music-Player/app/src/main/res/layout/music_detail_screen.xml" value="0.2318840579710145" />
+        <entry key="..\:/Users/User/StudioProjects/Music-Player/app/src/main/res/layout/page_artists.xml" value="0.17028985507246377" />
+        <entry key="..\:/Users/User/StudioProjects/Music-Player/app/src/main/res/layout/page_folder.xml" value="0.21739130434782608" />
+        <entry key="..\:/Users/User/StudioProjects/Music-Player/app/src/main/res/layout/page_songs.xml" value="0.21739130434782608" />
+        <entry key="..\:/Users/User/StudioProjects/Music-Player/app/src/main/res/layout/screen_artist_detial.xml" value="0.17028985507246377" />
+        <entry key="..\:/Users/User/StudioProjects/Music-Player/app/src/main/res/layout/screen_favourite.xml" value="0.21739130434782608" />
+        <entry key="..\:/Users/User/StudioProjects/Music-Player/app/src/main/res/layout/screen_folder_details.xml" value="0.17028985507246377" />
         <entry key="..\:/Users/User/StudioProjects/Music-Player/app/src/main/res/layout/screen_home.xml" value="0.18802083333333333" />
         <entry key="..\:/Users/User/StudioProjects/Music-Player/app/src/main/res/layout/screen_main.xml" value="0.264" />
         <entry key="..\:/Users/User/StudioProjects/Music-Player/app/src/main/res/layout/screen_music_detail.xml" value="0.264" />
         <entry key="..\:/Users/User/StudioProjects/Music-Player/app/src/main/res/layout/screen_playlist.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/User/StudioProjects/Music-Player/app/src/main/res/layout/screen_playlist_detail.xml" value="0.21739130434782608" />
       </map>
     </option>
   </component>

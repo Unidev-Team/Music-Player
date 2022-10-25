@@ -59,6 +59,9 @@ interface MusicDao {
     @Query("SELECT * FROM musics where packageMusic=:path ")
     suspend fun getFolderMusicByName(path: String): List<MusicData>
 
+    @Query("SELECT * FROM musics WHERE favourite == 1")
+    fun getAllFavouriteMusic(): Flow<List<MusicData>>
+
     @Update
     fun updatePlayList(playlistData: PlaylistData)
 

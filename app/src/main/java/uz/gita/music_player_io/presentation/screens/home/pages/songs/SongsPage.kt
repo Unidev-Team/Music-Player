@@ -14,7 +14,9 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import timber.log.Timber
 import uz.gita.music_player_io.R
+import uz.gita.music_player_io.data.model.MusicData
 import uz.gita.music_player_io.databinding.PageSongsBinding
 import uz.gita.music_player_io.presentation.viewmodels.HomeViewModel
 import uz.gita.music_player_io.presentation.viewmodels.impl.HomeViewModelImpl
@@ -32,6 +34,7 @@ class SongsPage : Fragment(R.layout.page_songs), ServiceConnection {
     private val viewModel: HomeViewModel by viewModels<HomeViewModelImpl>()
     private val adapter by lazy { SongsAdapter() }
     private var musicService: MusicService? = null
+    private lateinit var list: List<MusicData>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,18 +45,22 @@ class SongsPage : Fragment(R.layout.page_songs), ServiceConnection {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.rvSongs.adapter = adapter
-        viewModel.getAllMusics()
+
         viewModel.getAllMusicsPlaylist().onEach {
-            MusicPlaying.setMusicList(it)
+            list = it
             adapter.submitList(it)
         }.launchIn(lifecycleScope)
 
         adapter.setItemClickListener {
+            MusicPlaying.setMusicList(list)
             MusicPlaying.clickMusic(it)
         }
+
         adapter.setItemFavouriteClickListener {
             viewModel.updateMusic(it)
         }
+
+        viewModel.getAllMusics()
     }
 
     override fun onServiceConnected(name: ComponentName?, service: IBinder?) {

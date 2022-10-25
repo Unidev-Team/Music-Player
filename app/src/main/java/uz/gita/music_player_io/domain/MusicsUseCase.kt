@@ -14,4 +14,6 @@ interface MusicsUseCase {
 
     fun getAllMusics():Flow<List<MusicData>>
 
+    fun getAllFavouriteMusic(): Flow<List<MusicData>>
+
 }

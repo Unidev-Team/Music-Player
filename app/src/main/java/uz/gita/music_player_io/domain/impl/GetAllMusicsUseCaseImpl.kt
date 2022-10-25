@@ -79,7 +79,7 @@ class GetAllMusicsUseCaseImpl @Inject constructor(
                         image = artUriC,
                         displayName = "",
                         path = pathC,
-                        packageMusic = newPackage
+                        packageMusic = newPackage,
                     )
                     val file = File(music.path)
                     if (file.exists()) {

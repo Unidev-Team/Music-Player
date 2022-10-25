@@ -31,8 +31,13 @@ class SongsAdapter : ListAdapter<MusicData, SongsAdapter.SongsViewHolder>(SongsA
         init {
 
             binding.icFavourite.setOnClickListener {
+
                 val data = getItem(absoluteAdapterPosition)
-                itemFavouriteClick?.invoke(data.copy(favourite = !data.favourite))
+
+                if(data.favourite == 1) data.favourite = 0
+                else data.favourite = 1
+
+                itemFavouriteClick?.invoke(data.copy(favourite = data.favourite))
             }
 
             binding.root.setOnClickListener {
@@ -41,8 +46,11 @@ class SongsAdapter : ListAdapter<MusicData, SongsAdapter.SongsViewHolder>(SongsA
         }
 
         fun bind() {
+
+            val data = getItem(absoluteAdapterPosition)
+
             binding.tvSongName.apply {
-                text = getItem(absoluteAdapterPosition).title
+                text = data.title
                 isSelected = true
                 setSingleLine()
             }
@@ -50,20 +58,20 @@ class SongsAdapter : ListAdapter<MusicData, SongsAdapter.SongsViewHolder>(SongsA
             binding.tvSongDescription.apply {
                 isSelected = true
                 setSingleLine()
-                text = getItem(absoluteAdapterPosition).artistName
+                text = data.artistName
             }
 
-            binding.tvSongDuration.text = getItem(absoluteAdapterPosition).duration.longToMin()
+            binding.tvSongDuration.text = data.duration.longToMin()
 
-            val data = getItem(absoluteAdapterPosition)
-            if (data.favourite) {
+            if (data.favourite == 1) {
                 binding.icFavourite.setImageResource(R.drawable.ic_favorite_fill)
             } else {
                 binding.icFavourite.setImageResource(R.drawable.ic_favorite)
             }
+
             Glide
                 .with(binding.root.context)
-                .load(getItem(absoluteAdapterPosition).image)
+                .load(data.image)
                 .into(binding.ivArtist)
         }
     }
@@ -96,7 +104,5 @@ object SongsAdapterComparator : DiffUtil.ItemCallback<MusicData>() {
                 oldItem.album == newItem.album && oldItem.duration == newItem.duration &&
                 oldItem.title == newItem.title && oldItem.path == newItem.path &&
                 oldItem.favourite == newItem.favourite
-
     }
-
 }

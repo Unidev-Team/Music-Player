@@ -19,5 +19,5 @@ data class MusicData(
     val image: String,
     val path: String,
     val packageMusic: String,
-    val favourite: Boolean = false
+    var favourite: Int = 0
 ) : Parcelable
