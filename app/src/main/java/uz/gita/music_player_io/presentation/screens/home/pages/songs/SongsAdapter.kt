@@ -70,10 +70,11 @@ class SongsAdapter : ListAdapter<MusicData, SongsAdapter.SongsViewHolder>(SongsA
             Glide
                 .with(binding.root.context)
                 .load(data.image)
+                //.placeholder(R.drawable.ic_music_24)
                 .into(binding.ivArtist)
         }
     }
-
+    
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SongsViewHolder {
         return SongsViewHolder(
             ItemSongBinding.bind(
