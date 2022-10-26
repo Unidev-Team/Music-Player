@@ -47,12 +47,17 @@
         <entry key="..\:/Users/User/StudioProjects/Music-Player/app/src/main/res/drawable/ic_previous_left.xml" value="0.1855" />
         <entry key="..\:/Users/User/StudioProjects/Music-Player/app/src/main/res/drawable/play.xml" value="0.1855" />
         <entry key="..\:/Users/User/StudioProjects/Music-Player/app/src/main/res/layout/bottom_music_view.xml" value="0.20697463768115942" />
+        <entry key="..\:/Users/User/StudioProjects/Music-Player/app/src/main/res/layout/item_playlist.xml" value="0.2418478260869565" />
         <entry key="..\:/Users/User/StudioProjects/Music-Player/app/src/main/res/layout/item_song.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/User/StudioProjects/Music-Player/app/src/main/res/layout/list_item_folders.xml" value="0.2418478260869565" />
         <entry key="..\:/Users/User/StudioProjects/Music-Player/app/src/main/res/layout/music_detail_screen.xml" value="0.2318840579710145" />
+        <entry key="..\:/Users/User/StudioProjects/Music-Player/app/src/main/res/layout/screen_folder_details.xml" value="0.2418478260869565" />
         <entry key="..\:/Users/User/StudioProjects/Music-Player/app/src/main/res/layout/screen_home.xml" value="0.18802083333333333" />
-        <entry key="..\:/Users/User/StudioProjects/Music-Player/app/src/main/res/layout/screen_main.xml" value="0.264" />
+        <entry key="..\:/Users/User/StudioProjects/Music-Player/app/src/main/res/layout/screen_main.xml" value="0.2" />
         <entry key="..\:/Users/User/StudioProjects/Music-Player/app/src/main/res/layout/screen_music_detail.xml" value="0.264" />
         <entry key="..\:/Users/User/StudioProjects/Music-Player/app/src/main/res/layout/screen_playlist.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/User/StudioProjects/Music-Player/app/src/main/res/layout/screen_playlist_add_song.xml" value="0.2418478260869565" />
+        <entry key="..\:/Users/User/StudioProjects/Music-Player/app/src/main/res/layout/screen_playlist_detail.xml" value="0.2" />
       </map>
     </option>
   </component>

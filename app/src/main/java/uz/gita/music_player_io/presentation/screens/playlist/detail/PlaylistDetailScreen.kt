@@ -27,7 +27,6 @@ import uz.gita.music_player_io.utils.MusicPlaying
 class PlaylistDetailScreen : Fragment(R.layout.screen_playlist_detail) {
 
     private val viewModel: PlaylistDetailViewModel by viewModels<PlaylistDetailViewModelImpl>()
-    private var isPlaying = false
     private val saveArgs: PlaylistDetailScreenArgs by navArgs()
     private val musicAdapter: SongsAdapter by lazy { SongsAdapter() }
     private val binding: ScreenPlaylistDetailBinding by viewBinding(ScreenPlaylistDetailBinding::bind)
@@ -54,39 +53,13 @@ class PlaylistDetailScreen : Fragment(R.layout.screen_playlist_detail) {
             MusicPlaying.setMusicList(musicList)
             MusicPlaying.clickMusic(it)
         }
+
+        binding.btnBack.setOnClickListener {
+            findNavController().navigateUp()
+        }
         
         viewModel.getAllPlaylistSong(saveArgs.playlistData.id)
 
-        binding.iconPlayOrPause.setOnClickListener {
-            if (isPlaying) {
-                MusicPlaying.pauseMusic()
-                binding.iconPlayOrPause.setImageResource(R.drawable.ic_pause)
-            } else {
-                MusicPlaying.startMusic()
-                binding.iconPlayOrPause.setImageResource(R.drawable.play)
-            }
-            isPlaying = !isPlaying
-        }
-
-        binding.iconNextSong.setOnClickListener {
-            MusicPlaying.clickMusic(MusicPlaying.positionMusic+1)
-        }
-
-        MusicPlaying.musicLiveData.observe(viewLifecycleOwner, musicObserver)
-
     }
 
-    @SuppressLint("SetTextI18n")
-    private val musicObserver = Observer<MusicData> {
-
-        if (!binding.bottomMusicContainer.isVisible) {
-            binding.bottomMusicContainer.visibility = View.VISIBLE
-        }
-
-        binding.apply {
-            imgArtist.setImageURI(Uri.parse(it.image))
-            tvSingerSong.text = "${it.artistName} - ${it.title}"
-            isPlaying = true
-        }
-    }
 }

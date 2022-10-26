@@ -55,7 +55,6 @@ class FolderDetailsScreen : Fragment(R.layout.screen_folder_details) {
             list = it
         }.launchIn(viewLifecycleOwner.lifecycleScope)
 
-
         adapter.setItemClickListener {
             MusicPlaying.setMusicList(list)
             MusicPlaying.clickMusic(it)

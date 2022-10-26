@@ -46,7 +46,6 @@ class MusicService : Service() {
         createNotification()
     }
 
-
     inner class MyBinder : Binder() {
         fun currentService(): MusicService {
             return this@MusicService
@@ -134,6 +133,8 @@ class MusicService : Service() {
 
     override fun onDestroy() {
         super.onDestroy()
+
+        Log.d("SSS","SERVICE DESTROY" )
         unregisterReceiver(musicBroadcast)
     }
 }

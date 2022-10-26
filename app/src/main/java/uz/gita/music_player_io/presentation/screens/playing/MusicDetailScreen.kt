@@ -148,7 +148,11 @@ class MusicDetailScreen : Fragment(R.layout.screen_music_detail) {
             while (true) {
                 delay(100)
                 val percent =
-                    MusicPlaying.mediaPlayer?.currentPosition!! * 100 / MusicPlaying.mediaPlayer!!.duration
+                    if (MusicPlaying.mediaPlayer?.duration == 0) 0
+                    else {
+                        MusicPlaying.mediaPlayer?.currentPosition!! * 100 / MusicPlaying.mediaPlayer!!.duration
+                    }
+
                 binding.musicSeekBar.progress = percent
 
                 binding.tvStartSong.text =

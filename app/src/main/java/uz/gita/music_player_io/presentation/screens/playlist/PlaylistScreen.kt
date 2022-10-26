@@ -8,7 +8,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import uz.gita.music_player_io.R
@@ -26,6 +25,7 @@ class PlaylistScreen : Fragment(R.layout.screen_playlist) {
     private val binding: ScreenPlaylistBinding by viewBinding()
     private val adapter: PlaylistAdapter by lazy { PlaylistAdapter() }
     private val viewModel: PlayListViewModel by viewModels<PlayListViewModelImpl>()
+    private var playlistCount = 0
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -41,10 +41,18 @@ class PlaylistScreen : Fragment(R.layout.screen_playlist) {
 
         viewModel.getAllPlaylist().onEach {
             adapter.submitList(it)
-        }.launchIn(lifecycleScope)
+
+            binding.tvPlaylistCount.text = it.size.toString()
+
+        }.launchIn(viewLifecycleOwner.lifecycleScope)
+
 
         adapter.setItemClickListener {
-            findNavController().navigate(PlaylistScreenDirections.actionPlaylistScreenToPlaylistDetailScreen(it))
+            findNavController().navigate(
+                PlaylistScreenDirections.actionPlaylistScreenToPlaylistDetailScreen(
+                    it
+                )
+            )
         }
     }
 }

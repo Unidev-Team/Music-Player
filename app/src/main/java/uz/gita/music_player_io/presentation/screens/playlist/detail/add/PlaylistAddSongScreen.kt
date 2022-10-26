@@ -5,6 +5,7 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import by.kirich1409.viewbindingdelegate.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -33,6 +34,10 @@ class PlaylistAddSongScreen : Fragment(R.layout.screen_playlist_add_song) {
 
             adapter.setIconClickListener {
                 viewModel.changeMusic(it)
+            }
+
+            btnBack.setOnClickListener {
+                findNavController().navigateUp()
             }
         }
 

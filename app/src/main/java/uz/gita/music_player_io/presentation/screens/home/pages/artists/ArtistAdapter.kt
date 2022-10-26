@@ -29,6 +29,7 @@ class ArtistAdapter:ListAdapter<ArtistData,ArtistAdapter.ViewHolder>(ArtistAdapt
                 Glide
                     .with(binding.root.context)
                     .load(getItem(absoluteAdapterPosition).image)
+                    .placeholder(R.drawable.ic_music)
                     .into(binding.ivArtist)
             }
         }
