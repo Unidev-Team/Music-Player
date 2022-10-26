@@ -10,6 +10,7 @@
         <item name="colorSecondaryVariant">@color/teal_700</item>
         <item name="colorOnSecondary">@color/white</item>
         <item name="android:windowBackground">@color/bg_color</item>
+        <item name="android:textColor">@color/white</item>
         <item name="android:fontFamily">@font/app_font_bold</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>

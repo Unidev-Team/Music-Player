@@ -70,6 +70,7 @@ class SongsAdapter : ListAdapter<MusicData, SongsAdapter.SongsViewHolder>(SongsA
             Glide
                 .with(binding.root.context)
                 .load(data.image)
+                .placeholder(R.drawable.ic_music)
                 .into(binding.ivArtist)
         }
     }
@@ -98,9 +99,6 @@ object SongsAdapterComparator : DiffUtil.ItemCallback<MusicData>() {
     }
 
     override fun areContentsTheSame(oldItem: MusicData, newItem: MusicData): Boolean {
-
-        Log.d("TTT", "${oldItem}")
-        Log.d("TTT", "${newItem}")
 
         return oldItem.id == newItem.id && oldItem.path == newItem.path && oldItem.favourite == newItem.favourite
     }

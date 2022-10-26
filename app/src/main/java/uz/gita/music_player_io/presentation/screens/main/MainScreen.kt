@@ -1,7 +1,6 @@
 package uz.gita.music_player_io.presentation.screens.main
 
 import android.annotation.SuppressLint
-import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.core.view.isVisible
@@ -12,6 +11,7 @@ import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
 import uz.gita.music_player_io.R
 import uz.gita.music_player_io.data.model.MusicData
@@ -73,8 +73,12 @@ class MainScreen : Fragment(R.layout.screen_main) {
         }
 
         binding.apply {
-            imgAlbum.setImageURI(Uri.parse(it.image))
+            Glide.with(requireContext())
+                .load(it.image)
+                .placeholder(R.drawable.ic_music)
+                .into(imgAlbum)
             tvSingerSong.text = "${it.artistName} - ${it.title}"
+            tvSingerSong.maxLines = 2
             isPlaying = true
         }
     }
